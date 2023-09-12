@@ -29,6 +29,15 @@ const userSchema = {
   },
 };
 
+// security question schema
+const securityQuestionSchema = {
+  type: "object",
+  properties: {
+    questionText: { type: "string" },
+    answerText: { type: "string" },
+  },
+};
+
 // invoice schema
 const invoiceSchema = {
   type: "object",
