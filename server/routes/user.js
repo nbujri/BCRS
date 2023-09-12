@@ -88,3 +88,5 @@ const lineItemSchema = {
   required: ["name", "price"],
   additionalProperties: false,
 };
+
+module.exports = router;
