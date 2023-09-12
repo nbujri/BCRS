@@ -27,6 +27,18 @@ const userSchema = {
     role: { type: "string" },
     selectedSecurityQuestions: securityQuestionSchema,
   },
+  required: [
+    "email",
+    "password",
+    "firstName",
+    "lastName",
+    "phoneNumber",
+    "address",
+    "isDisabled",
+    "role",
+    "selectedSecurityQuestions",
+  ],
+  additionalProperties: false,
 };
 
 // security question schema
@@ -36,6 +48,8 @@ const securityQuestionSchema = {
     questionText: { type: "string" },
     answerText: { type: "string" },
   },
+  required: ["questionText", "answerText"],
+  additionalProperties: false,
 };
 
 // invoice schema
@@ -51,6 +65,17 @@ const invoiceSchema = {
     invoiceTotal: { type: "number" },
     orderDate: { type: "date" },
   },
+  required: [
+    "email",
+    "fullName",
+    "lineItems",
+    "partsAmount",
+    "laborAmount",
+    "lineItemTotal",
+    "invoiceTotal",
+    "orderDate",
+  ],
+  additionalProperties: false,
 };
 
 // line item schema
@@ -60,4 +85,6 @@ const lineItemSchema = {
     name: { type: "string" },
     price: { type: "number" },
   },
+  required: ["name", "price"],
+  additionalProperties: false,
 };
