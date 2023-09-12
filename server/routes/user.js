@@ -28,3 +28,18 @@ const userSchema = {
     selectedSecurityQuestions: securityQuestionSchema,
   },
 };
+
+// invoice schema
+const invoiceSchema = {
+  type: "object",
+  properties: {
+    email: { type: "string" },
+    fullName: { type: "string" },
+    lineItems: lineItemsSchema,
+    partsAmount: { type: "number" },
+    laborAmount: { type: "number" },
+    lineItemTotal: { type: "number" },
+    invoiceTotal: { type: "number" },
+    orderDate: { type: "date" },
+  },
+};
