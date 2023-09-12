@@ -35,11 +35,20 @@ const invoiceSchema = {
   properties: {
     email: { type: "string" },
     fullName: { type: "string" },
-    lineItems: lineItemsSchema,
+    lineItems: lineItemSchema,
     partsAmount: { type: "number" },
     laborAmount: { type: "number" },
     lineItemTotal: { type: "number" },
     invoiceTotal: { type: "number" },
     orderDate: { type: "date" },
+  },
+};
+
+// line item schema
+const lineItemSchema = {
+  type: "object",
+  properties: {
+    name: { type: "string" },
+    price: { type: "number" },
   },
 };
