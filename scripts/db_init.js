@@ -170,6 +170,93 @@ async function dbInit() {
         // TODO Insert invoices data HERE
         //const invoicesData = [
 
+     /**   {
+            "email": "customer1@example.com",
+                "fullName": "Customer One",
+                    "lineItems": [
+                        { "name": "Hard Drive Replacement", "price": 100.0 },
+                        { "name": "RAM Replacement", "price": 50.0 },
+                        { "name": "Virus Removal", "price": 75.0 }
+                    ],
+                        "partsAmount": 150.0,
+                            "laborAmount": 75.0,
+                                "lineItemTotal": 225.0,
+                                    "invoiceTotal": 250.0,
+                                        "orderDate": "2023-09-12"
+        },
+        {
+            "email": "customer2@example.com",
+                "fullName": "Customer Two",
+                    "lineItems": [
+                        { "name": "Screen Replacement", "price": 120.0 },
+                        { "name": "Keyboard Replacement", "price": 30.0 },
+                        { "name": "Software Installation", "price": 40.0 }
+                    ],
+                        "partsAmount": 150.0,
+                            "laborAmount": 60.0,
+                                "lineItemTotal": 210.0,
+                                    "invoiceTotal": 220.0,
+                                        "orderDate": "2023-09-11"
+        },
+        {
+            "email": "customer3@example.com",
+                "fullName": "Customer Three",
+                    "lineItems": [
+                        { "name": "Data Recovery", "price": 200.0 },
+                        { "name": "Motherboard Replacement", "price": 80.0 },
+                        { "name": "System Tune-up", "price": 50.0 }
+                    ],
+                        "partsAmount": 280.0,
+                            "laborAmount": 60.0,
+                                "lineItemTotal": 340.0,
+                                    "invoiceTotal": 360.0,
+                                        "orderDate": "2023-09-10"
+        },
+        {
+            "email": "customer4@example.com",
+                "fullName": "Customer Four",
+                    "lineItems": [
+                        { "name": "Printer Repair", "price": 60.0 },
+                        { "name": "Network Troubleshooting", "price": 40.0 },
+                        { "name": "Operating System Upgrade", "price": 80.0 }
+                    ],
+                        "partsAmount": 60.0,
+                            "laborAmount": 120.0,
+                                "lineItemTotal": 180.0,
+                                    "invoiceTotal": 200.0,
+                                        "orderDate": "2023-09-09"
+        },
+        {
+            "email": "customer5@example.com",
+                "fullName": "Customer Five",
+                    "lineItems": [
+                        { "name": "Battery Replacement", "price": 40.0 },
+                        { "name": "Antivirus Installation", "price": 25.0 },
+                        { "name": "Data Backup", "price": 30.0 }
+                    ],
+                        "partsAmount": 65.0,
+                            "laborAmount": 55.0,
+                                "lineItemTotal": 120.0,
+                                    "invoiceTotal": 130.0,
+                                        "orderDate": "2023-09-08"
+        },
+        {
+            "email": "customer6@example.com",
+                "fullName": "Customer Six",
+                    "lineItems": [
+                        { "name": "Monitor Repair", "price": 70.0 },
+                        { "name": "Graphics Card Upgrade", "price": 100.0 },
+                        { "name": "Data Transfer", "price": 45.0 }
+                    ],
+                        "partsAmount": 170.0,
+                            "laborAmount": 60.0,
+                                "lineItemTotal": 230.0,
+                                    "invoiceTotal": 240.0,
+                                        "orderDate": "2023-09-07"
+        }
+]
+*/
+
 
 
     } catch (err) {
