@@ -19,7 +19,7 @@ const client = new MongoClient(MONGO_URL, {
     useUnifiedTopology: true,
 });
 
-// Schemas
+// Schemas for the database collections 
 
 // Security question schema
 const securityQuestionSchema = {
@@ -164,7 +164,7 @@ async function dbInit() {
             },
         ];
 
-        // Insert users data
+        // Insert users data into the "users" collection
         await db.collection("users").insertMany(usersData);
 
         // TODO Insert invoices data HERE
