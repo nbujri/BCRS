@@ -10,8 +10,12 @@ const express = require("express");
 const router = express.Router();
 const { mongo } = require("..utils/mongo");
 const bcrypt = require("bcryptjs");
-const ajv = require("ajv");
+const Ajv = require("ajv");
 const { async } = require("rxjs");
+
+const ajv = new Ajv();
+
+const saltRounds = 10;
 
 // user schema
 const userSchema = {
@@ -88,5 +92,40 @@ const lineItemSchema = {
   required: ["name", "price"],
   additionalProperties: false,
 };
+
+// createUser
+router.post("/", (req, res, next) => {
+  try {
+    const { user } = req.body; // store user details from body
+    console.log("user", user);
+
+    const validator = ajv.compile(userSchema);
+    const valid = validator(user); // validate user against userSchema
+
+    // log error if validation fails and return early
+    if (!valid) {
+      const err = new Error("bad request");
+      err.status = 400;
+      err.errors = validator.errors;
+      console.log("request body validation failed", err);
+      next(err);
+      return;
+    }
+
+    // hash user password
+    user.password = bcrypt.hashSync(user.password, saltRounds);
+
+    mongo(async (db) => {
+      // insert user
+      const result = await db.collection("users").insertOne(user);
+      console.log("result", result);
+
+      res.json(result); // send back response as json
+    }, next);
+  } catch (err) {
+    console.log("err", err);
+    next(err);
+  }
+});
 
 module.exports = router;
