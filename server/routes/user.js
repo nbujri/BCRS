@@ -8,7 +8,7 @@
 
 const express = require("express");
 const router = express.Router();
-const { mongo } = require("..utils/mongo");
+const { mongo } = require("../utils/mongo");
 const bcrypt = require("bcryptjs");
 const Ajv = require("ajv");
 const { async } = require("rxjs");
@@ -16,6 +16,30 @@ const { async } = require("rxjs");
 const ajv = new Ajv();
 
 const saltRounds = 10;
+
+// security question schema
+const securityQuestionSchema = {
+  type: "object",
+  properties: {
+    questionText: { type: "string" },
+    answerText: { type: "string" },
+  },
+  required: ["questionText", "answerText"],
+  additionalProperties: false,
+};
+
+// question array schema
+const questionsSchema = {
+  type: "array",
+  items: {
+    type: "object",
+    properties: {
+      question: securityQuestionSchema,
+    },
+  },
+  required: ["question"],
+  additionalProperties: false,
+};
 
 // user schema
 const userSchema = {
@@ -29,7 +53,7 @@ const userSchema = {
     address: { type: "string" },
     isDisabled: { type: "boolean" },
     role: { type: "string" },
-    selectedSecurityQuestions: [securityQuestionSchema],
+    selectedSecurityQuestions: questionsSchema,
   },
   required: [
     "email",
@@ -45,14 +69,14 @@ const userSchema = {
   additionalProperties: false,
 };
 
-// security question schema
-const securityQuestionSchema = {
+// line item schema
+const lineItemSchema = {
   type: "object",
   properties: {
-    questionText: { type: "string" },
-    answerText: { type: "string" },
+    name: { type: "string" },
+    price: { type: "number" },
   },
-  required: ["questionText", "answerText"],
+  required: ["name", "price"],
   additionalProperties: false,
 };
 
@@ -79,17 +103,6 @@ const invoiceSchema = {
     "invoiceTotal",
     "orderDate",
   ],
-  additionalProperties: false,
-};
-
-// line item schema
-const lineItemSchema = {
-  type: "object",
-  properties: {
-    name: { type: "string" },
-    price: { type: "number" },
-  },
-  required: ["name", "price"],
   additionalProperties: false,
 };
 
