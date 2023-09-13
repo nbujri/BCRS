@@ -29,7 +29,7 @@ const userSchema = {
     address: { type: "string" },
     isDisabled: { type: "boolean" },
     role: { type: "string" },
-    selectedSecurityQuestions: securityQuestionSchema,
+    selectedSecurityQuestions: [securityQuestionSchema],
   },
   required: [
     "email",
@@ -62,7 +62,7 @@ const invoiceSchema = {
   properties: {
     email: { type: "string" },
     fullName: { type: "string" },
-    lineItems: lineItemSchema,
+    lineItems: [lineItemSchema],
     partsAmount: { type: "number" },
     laborAmount: { type: "number" },
     lineItemTotal: { type: "number" },
