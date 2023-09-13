@@ -5,29 +5,45 @@
   description: sign in page
 -->
 
-<!-- page container -->
-<div class="container">
+<!-- container -->
+<div class="container text-center">
   <h1>Bob's Computer Repair Shop</h1>
-  <!-- form container -->
-  <div class="form-container">
-    <h2>User Sign In</h2>
-    <form>
-      <!-- email -->
-      <div>
-        <label for="email">Email:</label>
-        <input type="text" id="email" />
+  <div class="row justify-content-center mt-5">
+    <div class="col-lg-4 col-md-5 col-sm-6">
+      <!-- card -->
+      <div class="card">
+        <!-- card title -->
+        <div class="card-title">
+          <h2>User Sign In</h2>
+        </div>
+        <!-- error messages -->
+
+        <!-- sign in form -->
+        <div class="card-body">
+          <form>
+            <!-- email -->
+            <div>
+              <label for="email" class="form-label">Email:</label>
+              <input type="text" class="form-control" id="email" />
+            </div>
+            <!-- password -->
+            <div>
+              <label for="password" class="form-label">Password:</label>
+              <input type="text" class="form-control" id="password" />
+            </div>
+            <!-- buttons -->
+            <div>
+              <button class="btn btn-dark">Sign In</button>
+            </div>
+            <div>
+              <button class="btn btn-dark">Forgot Password?</button>
+            </div>
+            <div>
+              <button class="btn btn-dark">Register</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <!-- password -->
-      <div>
-        <label for="password">Password:</label>
-        <input type="text" id="password" />
-      </div>
-      <!-- buttons -->
-      <div>
-        <button>Sign In</button>
-        <button>Forgot Password?</button>
-        <button>Register</button>
-      </div>
-    </form>
+    </div>
   </div>
 </div>
