@@ -19,25 +19,38 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
-        title: 'BCRS: Home' // title for the home page
+        title: 'BCRS: Home', // title for the home page
       },
       {
         path: 'home',
         component: HomeComponent,
-        title: 'BCRS: Home'
-      }
-    ]
+        title: 'BCRS: Home',
+      },
+      {
+        // lazy load admin routes
+        path: 'admin',
+        loadChildren: () =>
+          import('./admin/admin.module').then((m) => m.AdminModule),
+      },
+    ],
   },
   {
     // path for the security module (e.g. login, register, forgot password, etc.)
     path: 'security',
-    loadChildren: () => import('./security/security.module').then(m => m.SecurityModule)
-  }
+    loadChildren: () =>
+      import('./security/security.module').then((m) => m.SecurityModule),
+  },
 ];
 
 @NgModule({
   // imports the RouterModule and defines the routes array and other options (e.g. useHash, enableTracing, scrollPositionRestoration)
-  imports: [RouterModule.forRoot(routes, { useHash: true, enableTracing: false, scrollPositionRestoration: 'enabled'})],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, {
+      useHash: true,
+      enableTracing: false,
+      scrollPositionRestoration: 'enabled',
+    }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
