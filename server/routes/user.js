@@ -12,6 +12,7 @@ const { mongo } = require("..utils/mongo");
 const bcrypt = require("bcryptjs");
 const Ajv = require("ajv");
 const { async } = require("rxjs");
+const e = require("express");
 
 const ajv = new Ajv();
 
@@ -127,5 +128,27 @@ router.post("/", (req, res, next) => {
     next(err);
   }
 });
+
+// Delete user (soft delete by setting isDisabled to true)
+router.delete("/:id", (req, res, next) => {
+  try {
+    const { id } = req.params; // store id from params
+
+    mongo(async (db) => {
+      // update user
+      const result = await db
+        .collection("users")
+        .updateOne({ _id: id }, { $set: { isDisabled: true } });
+      console.log("result", result);
+
+      res.json(result); // send back response as json
+    }, next);
+  } catch (err) {
+    console.log("err", err);
+    next(err);
+  }
+});
+
+
 
 module.exports = router;
