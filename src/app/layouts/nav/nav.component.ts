@@ -1,4 +1,4 @@
-**
+/**
  * Title: nav.component.ts
  * Modified by: Caitlynne Johnson
  * Date: 9/13/23
