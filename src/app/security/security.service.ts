@@ -16,5 +16,12 @@ import { Injectable } from '@angular/core';
 // export class
 export class SecurityService {
 
+  constructor(private http: HttpClient) {
+    findEmployeeById(employeeId: string) {
+      return this.http.get('/api/employees/' + employeeId);
+
+   }
+
+
 
 }
