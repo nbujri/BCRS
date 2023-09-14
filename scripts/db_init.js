@@ -84,6 +84,39 @@ async function dbInit() {
       // Populate users and invoices here
       const usersData = [
         {
+          email: "bach@nodebucket.com",
+          password: bcrypt.hashSync("Password1", saltRounds),
+          firstName: "Johann Sebastian",
+          lastName: "bach",
+          phoneNumber: "123-456-7811",
+          address: "1234 Main Street, Anywhere, USA",
+          isDisabled: false,
+          role: "standard",
+          selectedSecurityQuestions: [
+            {
+              questionText: "What is your favorite spell?",
+              answerText: "leviosa",
+            },
+            { questionText: "What is your pet's name?", answerText: "bella" },
+          ],
+        },{
+          email: "mozart@nodebucket.com",
+          password: bcrypt.hashSync("Password1", saltRounds),
+          firstName: "›Wolfgang Amadeus‹",
+          lastName: "motzart",
+          phoneNumber: "555-456-7811",
+          address: "1234 Main Street, Anywhere, USA",
+          isDisabled: false,
+          role: "standard",
+          selectedSecurityQuestions: [
+            {
+              questionText: "What is your favorite spell?",
+              answerText: "leviosa",
+            },
+            { questionText: "What is your pet's name?", answerText: "doghead" },
+          ],
+        },
+        {
           email: "harry@bcrs.com",
           password: bcrypt.hashSync("Password1", saltRounds),
           firstName: "Harry",
@@ -91,7 +124,7 @@ async function dbInit() {
           phoneNumber: "123-456-7890",
           address: "4 Privet Drive, Little Whinging",
           isDisabled: false,
-          role: "student",
+          role: "admin",
           selectedSecurityQuestions: [
             {
               questionText: "What is your favorite spell?",
@@ -108,7 +141,7 @@ async function dbInit() {
           phoneNumber: "987-654-3210",
           address: "12 Grimmauld Place, London",
           isDisabled: false,
-          role: "student",
+          role: "admin",
           selectedSecurityQuestions: [
             {
               questionText: "What is your favorite book?",
@@ -128,7 +161,7 @@ async function dbInit() {
           phoneNumber: "555-123-4567",
           address: "The Burrow, Ottery St. Catchpole",
           isDisabled: false,
-          role: "student",
+          role: "standard",
           selectedSecurityQuestions: [
             {
               questionText: "What is your favorite Quidditch team?",
@@ -148,7 +181,7 @@ async function dbInit() {
           phoneNumber: "777-888-9999",
           address: "The Burrow, Ottery St. Catchpole",
           isDisabled: false,
-          role: "student",
+          role: "standard",
           selectedSecurityQuestions: [
             {
               questionText: "What is your favorite Quidditch position?",
@@ -165,7 +198,7 @@ async function dbInit() {
           phoneNumber: "111-222-3333",
           address: "Hogwarts Castle, Scotland",
           isDisabled: false,
-          role: "student",
+          role: "standard",
           selectedSecurityQuestions: [
             {
               questionText: "What is your favorite magical plant?",
@@ -182,7 +215,7 @@ async function dbInit() {
           phoneNumber: "123-555-7890",
           address: "12 Grimmauld Place, London",
           isDisabled: false,
-          role: "student",
+          role: "standard",
           selectedSecurityQuestions: [
             {
               questionText: "What is your favorite book?",
