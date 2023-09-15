@@ -7,14 +7,14 @@ Source: Professor Krasso, Angular.io -->
 <!-- component container -->
 <div class="container-fluid">
   <!-- page title -->
-  <h1 class="text-center">User Configuration</h1>
+  <h1 class="text-center mt-3">User Configuration</h1>
 
-  <div class="row justify-content-center g-5">
-    <!-- user list -->
+  <div class="row justify-content-center g-5 mt-2">
+    <!-- user list table -->
     <div class="col-6">
       <!-- table -->
       <div>
-        <table class="table">
+        <table class="table table-hover">
           <!-- table header -->
           <thead class="table-dark">
             <tr>
@@ -26,16 +26,34 @@ Source: Professor Krasso, Angular.io -->
               <th>Actions</th>
             </tr>
           </thead>
+          <!-- loading spinner -->
+          <div *ngIf="isLoading" class="d-flex justify-content-center mt-5">
+            <div
+              class="spinner-border spinner-lg"
+              style="width: 3rem; height: 3rem"
+              role="status"
+              aria-hidden="true"
+            >
+              <span class="sr-only visually-hidden">Loading...</span>
+            </div>
+          </div>
           <!-- table body -->
-          <tbody>
+          <tbody *ngFor="let user of users" class="table-striped">
             <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.firstName }}</td>
+              <td>{{ user.lastName }}</td>
+              <td>{{ user.phoneNumber }}</td>
+              <td>{{ user.role }}</td>
               <!-- place edit and delete buttons below -->
-              <td></td>
+              <td>
+                <a routerLink="">
+                  <span class="material-icons text-secondary">edit</span>
+                </a>
+                <a routerLink="">
+                  <span class="material-icons text-secondary">delete</span>
+                </a>
+              </td>
             </tr>
           </tbody>
         </table>
