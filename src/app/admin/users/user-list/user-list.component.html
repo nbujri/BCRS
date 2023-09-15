@@ -1,1 +1,88 @@
-<p>user-list works!</p>
+<!-- component container -->
+<div class="container-fluid">
+  <!-- page title -->
+  <h1 class="text-center">User Configuration</h1>
+
+  <div class="row justify-content-center g-5">
+    <!-- user list -->
+    <div class="col-6">
+      <!-- table -->
+      <div>
+        <table class="table">
+          <!-- table header -->
+          <thead class="table-dark">
+            <tr>
+              <th>Email</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Phone #</th>
+              <th>Role</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <!-- table body -->
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <!-- place edit and delete buttons below -->
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- user list end -->
+
+    <!-- add user form -->
+    <div class="col-4 text-center">
+      <h2>Add User</h2>
+      <div class="card-body border p-5">
+        <form>
+          <!-- email input -->
+          <div class="mb-3">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" />
+          </div>
+          <!-- password input -->
+          <div class="mb-3">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" />
+          </div>
+          <!-- first name input -->
+          <div class="mb-3">
+            <label for="firstName">First Name:</label>
+            <input type="text" class="form-control" />
+          </div>
+          <!-- last name input -->
+          <div class="mb-3">
+            <label for="lastName">Last Name:</label>
+            <input type="text" class="form-control" />
+          </div>
+          <!-- Address input -->
+          <div class="mb-3">
+            <label for="address">Address:</label>
+            <input type="text" class="form-control" />
+          </div>
+          <!-- role input -->
+          <div class="mb-5">
+            <label for="role">Role:</label>
+            <select name="role" id="role" class="form-select">
+              <option value="standard">Standard</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <!-- buttons -->
+          <div class="row mt-5">
+            <button class="col-6 btn btn-dark">Submit</button>
+            <button class="col-6 btn btn-dark">Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- end form -->
+  </div>
+</div>
