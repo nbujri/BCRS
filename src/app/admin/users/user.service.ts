@@ -16,6 +16,10 @@ import { UserViewModel } from './user-view-model';
 export class UserService {
   constructor(private http: HttpClient) {}
 
+  findAllUsers() {
+    return this.http.get('/api/users');
+  }
+
   createUser(user: User) {
     return this.http.post('/api/users/', user);
   }
