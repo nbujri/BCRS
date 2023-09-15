@@ -107,6 +107,31 @@ const invoiceSchema = {
   additionalProperties: false,
 };
 
+// findAllUsers
+
+router.get('/', (req, res, next) => {
+  try {
+    mongo(async db => {
+      
+    const users = await db.collection('users').find (
+      {},
+      { projection: { email: 1, fullName: 1, lineItems: 1, partsAmount: 1, laborAmount: 1, lineItemTotal: 1, invoiceTotal: 1, orderDate: 1} }
+      )
+    .sort({ email: 1 })
+    .toArray() // return this as an array
+
+    console.log('user', users)
+
+    res.send(users)
+
+    }, next)
+  } catch (err) {
+    console.log('err', err)
+    next(err)
+  } 
+})
+
+
 // createUser
 router.post("/", (req, res, next) => {
   try {

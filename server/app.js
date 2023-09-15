@@ -1,8 +1,9 @@
-/**
- * Title: app.js
- * Author: Professor Krasso
- * Date: 8/5/2023
- */
+/* Title: app
+Author: Megan Walker,  Ngi Bujri, Caitlynne Johnson
+Date: 09-14-2023
+Description: app.js file for the Business Continuity and Recovery Services (BCRS) application
+Source: Professor Krasso, Angular.io */
+
 "use strict";
 
 // Require statements
