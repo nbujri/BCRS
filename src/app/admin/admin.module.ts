@@ -1,3 +1,9 @@
+/* Title: admin.module
+Author: Megan Walker,  Ngi Bujri, Caitlynne Johnson
+Date: 09-14-2023
+Description: admin module for BCRS
+Source: Professor Krasso, Angular.io */
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

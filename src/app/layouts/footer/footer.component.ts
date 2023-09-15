@@ -1,8 +1,8 @@
-/**
- * Title: footer.component.ts
- * Author: Professor Krasso
- * Date: 8/5/23
- */
+/* Title: footer.component
+Author: Megan Walker,  Ngi Bujri, Caitlynne Johnson
+Date: 09-14-2023
+Description: footer component for BCRS
+Source: Professor Krasso, Angular.io */
 
 // imports statements
 import { Component } from '@angular/core';

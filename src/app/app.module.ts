@@ -1,8 +1,8 @@
-/**
- * Title: app.module.ts
- * Author: Professor Krasso
- * Date: 8/5/23
- */
+/* Title: app.module
+Author: Megan Walker, Ngi Bujri, Caitlynne Johnson
+Date: 09-14-2023
+Description: app.module for BCRS
+Source: Professor Krasso, Angular.io */
 
 // imports statements
 import { NgModule } from '@angular/core';
