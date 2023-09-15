@@ -134,7 +134,83 @@ router.post("/", (req, res, next) => {
       const result = await db.collection("users").insertOne(user);
       console.log("result", result);
 
-      res.json(result); // send back response as json
+      res.status(201).json(result); // send back response as json
+    }, next);
+  } catch (err) {
+    console.log("err", err);
+    next(err);
+  }
+});
+
+// updateUser
+router.put("/users/:id", (req, res, next) => {
+  try {
+    const { id } = req.params;
+    id = parseInt(id);
+
+    // check if id is not a number
+    if (isNaN) {
+      const err = new Error("id must be a number");
+      err.status = 400;
+      console.log("err", err);
+      next(err);
+      return;
+    }
+
+    mongo(async (db) => {
+      const user = await db.collection("users").findOne({ id });
+      console.log("User: ", user.email);
+
+      // check if a user was returned
+      if (!user) {
+        const err = new Error(`${user.email} was not found`);
+        err.status = 404;
+        console.log("err", err);
+        next(err);
+        return;
+      }
+
+      const userUpdates = req.body;
+      console.log("updates: ", userUpdates);
+
+      // validate userUpdates against userSchema
+      const validator = ajv.compile(userSchema);
+      const valid = validator(userUpdates);
+
+      // check if validation passed
+      if (!valid) {
+        const err = new Error("bad request");
+        err.status = 400;
+        err.errors = validator.errors;
+        console.log("req.body validation failed", err);
+        next(err);
+        return;
+      }
+
+      const update = await db.collection("users").updateOne(
+        { id },
+        {
+          $set: {
+            email: userUpdates.email,
+            firstName: userUpdates.firstName,
+            lastName: userUpdates.lastName,
+            phoneNumber: userUpdates.phoneNumber,
+            address: userUpdates.address,
+            role: userUpdates.role,
+          },
+        }
+      );
+
+      // check if update occurred
+      if (!update.modifiedCount) {
+        const err = new Error(`unable to update ${user.email}'s info`);
+        err.status = 400;
+        console.log("err", err);
+        next(err);
+        return;
+      }
+
+      res.status(204).send("No Content");
     }, next);
   } catch (err) {
     console.log("err", err);
@@ -161,7 +237,5 @@ router.delete("/:id", (req, res, next) => {
     next(err);
   }
 });
-
-
 
 module.exports = router;
