@@ -155,7 +155,7 @@ router.get('/:email', (req, res, next) => {
         { projection: { email: 1, firstName: 1, lastName: 1, phoneNumber: 1, address: 1, role: 1 } }
         ) // find employee by id 
 
-      if (!employee) {
+      if (!user) {
         const err = new Error('Unable to find users with email ' + email)
         err.status = 404
         console.log('err', err)
