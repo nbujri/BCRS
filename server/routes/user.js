@@ -130,7 +130,6 @@ router.get('/', (req, res, next) => {
     next(err)
   } 
 })
-
 // findById 
 
 router.get('/:email', (req, res, next) => {
@@ -139,16 +138,7 @@ router.get('/:email', (req, res, next) => {
     console.log('email', req.params.email) 
 
     let { email } = req.params // get the id from the req.params object
-    email = parseInt(email, 10) // try to determine if the id is a numberical value
-
-    if (isNaN(email)) {
-      const err = new Error('Input must be a number')
-      err.status = 400
-      console.log('err', err)
-      next(err)
-      return
-    }
-
+    
     mongo(async db => {
       const user = await db.collection('users').findOne( 
         { email }, 
@@ -171,7 +161,6 @@ router.get('/:email', (req, res, next) => {
     next(err)
   }
 })
-
 
 // createUser
 router.post("/", (req, res, next) => {
