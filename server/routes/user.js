@@ -120,7 +120,7 @@ router.get('/', (req, res, next) => {
     .sort({ email: 1, })
     .toArray() // return this as an array
 
-    console.log('users', users)
+    console.log('user', users)
 
     res.send(users)
 
@@ -129,6 +129,47 @@ router.get('/', (req, res, next) => {
     console.log('err', err)
     next(err)
   } 
+})
+
+// findById 
+
+router.get('/:email', (req, res, next) => {
+  try {
+
+    console.log('email', req.params.email) 
+
+    let { email } = req.params // get the id from the req.params object
+    email = parseInt(email, 10) // try to determine if the id is a numberical value
+
+    if (isNaN(email)) {
+      const err = new Error('Input must be a number')
+      err.status = 400
+      console.log('err', err)
+      next(err)
+      return
+    }
+
+    mongo(async db => {
+      const user = await db.collection('users').findOne( 
+        { email }, 
+        { projection: { email: 1, firstName: 1, lastName: 1, phoneNumber: 1, address: 1, role: 1 } }
+        ) // find employee by id 
+
+      if (!employee) {
+        const err = new Error('Unable to find users with email ' + email)
+        err.status = 404
+        console.log('err', err)
+        next(err)
+        return 
+      }
+
+      res.send(user)
+    }, next)
+
+  } catch (err) {
+    console.log('err', err)
+    next(err)
+  }
 })
 
 
