@@ -54,18 +54,14 @@ const userSchema = {
     address: { type: "string" },
     isDisabled: { type: "boolean" },
     role: { type: "string" },
-    selectedSecurityQuestions: questionsSchema,
   },
   required: [
     "email",
     "password",
     "firstName",
     "lastName",
-    "phoneNumber",
-    "address",
     "isDisabled",
     "role",
-    "selectedSecurityQuestions",
   ],
   additionalProperties: false,
 };
@@ -123,6 +119,7 @@ router.get("/", (req, res, next) => {
               lastName: 1,
               phoneNumber: 1,
               address: 1,
+              isDisabled: 1,
               role: 1,
             },
           }
