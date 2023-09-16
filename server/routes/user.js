@@ -117,7 +117,7 @@ router.get('/', (req, res, next) => {
       {},
       { projection: { email: 1, firstName: 1, lastName: 1, phoneNumber: 1, address: 1, role: 1 } }
       )
-    .sort({ email: 1, })
+    .sort({ email: 1})
     .toArray() // return this as an array
 
     console.log('user', users)
