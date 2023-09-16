@@ -13,9 +13,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { UserListComponent } from './users/user-list/user-list.component';
+import { UserUpdateComponent } from './users/user-update/user-update.component';
 
 @NgModule({
-  declarations: [AdminComponent, UserListComponent],
+  declarations: [AdminComponent, UserListComponent, UserUpdateComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
