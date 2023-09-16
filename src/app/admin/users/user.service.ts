@@ -21,7 +21,7 @@ export class UserService {
   }
 
   createUser(user: User) {
-    return this.http.post('/api/users/', user);
+    return this.http.post('/api/users/', { user });
   }
 
   updateUser(userId: string, user: UserViewModel) {
