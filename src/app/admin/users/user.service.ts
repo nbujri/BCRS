@@ -27,4 +27,8 @@ export class UserService {
   updateUser(userId: string, user: UserViewModel) {
     return this.http.put('/api/users/' + userId, { user });
   }
+
+  deleteUser(id: string) {
+    return this.http.delete('/api/users/' + id);
+  }
 }

@@ -109,58 +109,74 @@ const invoiceSchema = {
 
 // findAllUsers
 
-router.get('/', (req, res, next) => {
+router.get("/", (req, res, next) => {
   try {
-    mongo(async db => {
-      
-    const users = await db.collection('users').find (
-      {},
-      { projection: { email: 1, firstName: 1, lastName: 1, phoneNumber: 1, address: 1, role: 1 } }
-      )
-    .sort({ email: 1})
-    .toArray() // return this as an array
+    mongo(async (db) => {
+      const users = await db
+        .collection("users")
+        .find(
+          {},
+          {
+            projection: {
+              email: 1,
+              firstName: 1,
+              lastName: 1,
+              phoneNumber: 1,
+              address: 1,
+              role: 1,
+            },
+          }
+        )
+        .sort({ email: 1 })
+        .toArray(); // return this as an array
 
-    console.log('user', users)
+      console.log("user", users);
 
-    res.send(users)
-
-    }, next)
+      res.send(users);
+    }, next);
   } catch (err) {
-    console.log('err', err)
-    next(err)
-  } 
-})
-// findById 
+    console.log("err", err);
+    next(err);
+  }
+});
+// findById
 
-router.get('/:email', (req, res, next) => {
+router.get("/:email", (req, res, next) => {
   try {
+    console.log("email", req.params.email);
 
-    console.log('email', req.params.email) 
+    let { email } = req.params; // get the id from the req.params object
 
-    let { email } = req.params // get the id from the req.params object
-    
-    mongo(async db => {
-      const user = await db.collection('users').findOne( 
-        { email }, 
-        { projection: { email: 1, firstName: 1, lastName: 1, phoneNumber: 1, address: 1, role: 1 } }
-        ) // find employee by id 
+    mongo(async (db) => {
+      const user = await db.collection("users").findOne(
+        { email },
+        {
+          projection: {
+            email: 1,
+            firstName: 1,
+            lastName: 1,
+            phoneNumber: 1,
+            address: 1,
+            role: 1,
+          },
+        }
+      ); // find employee by id
 
       if (!user) {
-        const err = new Error('Unable to find users with email ' + email)
-        err.status = 404
-        console.log('err', err)
-        next(err)
-        return 
+        const err = new Error("Unable to find users with email " + email);
+        err.status = 404;
+        console.log("err", err);
+        next(err);
+        return;
       }
 
-      res.send(user)
-    }, next)
-
+      res.send(user);
+    }, next);
   } catch (err) {
-    console.log('err', err)
-    next(err)
+    console.log("err", err);
+    next(err);
   }
-})
+});
 
 // createUser
 router.post("/", (req, res, next) => {
@@ -277,12 +293,13 @@ router.put("/users/:id", (req, res, next) => {
 router.delete("/:id", (req, res, next) => {
   try {
     const { id } = req.params; // store id from params
+    console.log(id);
 
     mongo(async (db) => {
       // update user
       const result = await db
         .collection("users")
-        .updateOne({ _id: id }, { $set: { isDisabled: true } });
+        .updateOne({ email: id }, { $set: { isDisabled: true } });
       console.log("result", result);
 
       res.json(result); // send back response as json

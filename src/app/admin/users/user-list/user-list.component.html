@@ -47,10 +47,10 @@ Source: Professor Krasso, Angular.io -->
               <td>{{ user.role }}</td>
               <!-- place edit and delete buttons below -->
               <td>
-                <a routerLink="">
+                <a routerLink="#">
                   <span class="material-icons text-secondary">edit</span>
                 </a>
-                <a routerLink="">
+                <a class="link" (click)="deleteUser(user.email)">
                   <span class="material-icons text-secondary">delete</span>
                 </a>
               </td>

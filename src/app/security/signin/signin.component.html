@@ -9,7 +9,7 @@
 <div class="container text-center">
   <h1 class="mt-5">Bob's Computer Repair Shop</h1>
   <div class="row justify-content-center mt-5">
-    <div class="col-lg-4 col-md-5 col-sm-6">
+    <div class="col-lg-6 col-md-5 col-sm-6">
       <!-- card -->
       <div class="card shadow p-5">
         <!-- card title -->
@@ -17,29 +17,132 @@
           <h2>User Sign In</h2>
         </div>
         <!-- error messages -->
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
 
         <!-- sign in form -->
         <div class="card-body">
-          <form>
-            <!-- email -->
+          <form
+            [formGroup]="signinForm"
+            (ngSubmit)="signin(); signinForm.reset()"
+          >
+            <!-- email section-->
+            <!-- email error handling -->
+            <div
+              *ngIf="
+                signinForm.controls['email'].touched &&
+                signinForm.controls['email'].hasError('required')
+              "
+            >
+              <div
+                class="alert alert-danger alert-dismissible fade show"
+                role="alert"
+              >
+                Email is required.
+                <input
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="close"
+                />
+              </div>
+            </div>
+            <div
+              *ngIf="
+                signinForm.controls['email'].touched &&
+                signinForm.controls['email'].hasError('email')
+              "
+            >
+              Please enter a valid email address.
+              <input
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="close"
+              />
+            </div>
+            <!-- end email error handling -->
+
+            <!-- email input -->
             <div class="mb-3">
               <label for="email" class="form-label">Email:</label>
-              <input type="text" class="form-control" id="email" />
+              <input
+                type="text"
+                class="form-control"
+                id="email"
+                formControlName="email"
+              />
+            </div>
+            <!-- end email section -->
+
+            <!-- password section-->
+            <!-- password error handling -->
+            <div
+              *ngIf="
+                signinForm.controls['password'].touched &&
+                signinForm.controls['password'].hasError('required')
+              "
+            >
+              <div
+                class="alert alert-danger alert-dismissible fade show"
+                role="alert"
+              >
+                Password is required.
+                <input
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="close"
+                />
+              </div>
+            </div>
+            <div
+              *ngIf="
+                signinForm.controls['password'].touched &&
+                signinForm.controls['password'].hasError('password')
+              "
+            >
+              Password must be at least 8 characters long and contain one
+              uppercase and lowercase letter, and one number
+              <input
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="close"
+              />
             </div>
 
-            <!-- password -->
+            <!-- password input -->
             <div class="mb-3">
               <label for="password" class="form-label">Password:</label>
-              <input type="text" class="form-control" id="password" />
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                formControlName="password"
+              />
             </div>
 
             <!-- buttons -->
             <div class="row gy-3 mt-5">
-              <button class="btn btn-dark" type="submit">Sign In</button>
-              <button class="btn btn-dark" routerLink="#">
+              <button
+                class="btn btn-dark"
+                type="submit"
+                [disabled]="!signinForm.valid"
+              >
+                Sign In
+              </button>
+              <!--
+                TODO:
+                * buttons below for sprint 2, disable for now
+              -->
+              <button class="btn btn-dark" routerLink="#" disabled="true">
                 Forgot Password?
               </button>
-              <button class="btn btn-dark" routerLink="#">Register</button>
+              <button class="btn btn-dark" routerLink="#" disabled="true">
+                Register
+              </button>
             </div>
           </form>
         </div>

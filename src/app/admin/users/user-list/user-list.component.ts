@@ -45,6 +45,24 @@ export class UserListComponent {
     });
   }
 
+  // delete a user
+  deleteUser(id: string) {
+    if (
+      !confirm('Are you sure you want to disable the following user?\n' + id)
+    ) {
+      return;
+    }
+
+    this.userService.deleteUser(id).subscribe({
+      next: (res) => {},
+      error: (err) => {
+        this.errorMessage = err.message;
+        console.error(err);
+        this.hideAlert();
+      },
+    });
+  }
+
   // hides messages after 3 seconds
   hideAlert() {
     setTimeout(() => {
