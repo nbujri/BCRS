@@ -10,12 +10,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { authGuard } from './shared/auth.guard';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
   {
     path: '',
     component: BaseLayoutComponent,
+    canActivateChild: [authGuard], // prevent access to child pages
     children: [
       {
         path: '',
@@ -37,6 +39,7 @@ const routes: Routes = [
         path: 'admin',
         loadChildren: () =>
           import('./admin/admin.module').then((m) => m.AdminModule),
+        canActivate: [authGuard], // prevent access if not admin
       },
     ],
   },
