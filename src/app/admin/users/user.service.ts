@@ -20,6 +20,10 @@ export class UserService {
     return this.http.get('/api/users');
   }
 
+  findByEmail(email: string) {
+    return this.http.get('/api/users/' + email);
+  }
+
   createUser(user: User) {
     return this.http.post('/api/users/', { user });
   }
