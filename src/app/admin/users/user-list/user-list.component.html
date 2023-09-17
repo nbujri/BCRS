@@ -62,7 +62,7 @@ Source: Professor Krasso, Angular.io -->
                 <td>{{ user.role }}</td>
                 <!-- place edit and delete buttons below -->
                 <td>
-                  <a routerLink="#">
+                  <a routerLink="/admin/users/{{ user.email }}/user-update">
                     <span class="material-icons text-secondary">edit</span>
                   </a>
                   <a class="link" (click)="deleteUser(user.email)">
