@@ -10,6 +10,8 @@ Source: Professor Krasso, Angular.io */
 const express = require("express");
 const createServer = require("http-errors");
 const path = require("path");
+const swaggerDoc = require("../swagger.json");
+const swaggerUI = require("swagger-ui-express");
 
 // route files
 const userRoute = require("../server/routes/user");
@@ -27,6 +29,9 @@ app.use("/", express.static(path.join(__dirname, "../dist/bcrs")));
 // api route
 app.use("/api/users", userRoute);
 app.use("/api/security", securityRoute);
+
+// swagger router
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
 // error handler for 404 errors
 app.use(function (req, res, next) {
