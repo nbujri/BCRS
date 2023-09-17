@@ -15,7 +15,7 @@
   ],
   "paths": {
     "/api/users/": {
-      "get": {
+      "post": {
         "tags": ["Users"],
         "summary": "createUser",
         "description": "Create a new user",
