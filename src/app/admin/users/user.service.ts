@@ -24,11 +24,11 @@ export class UserService {
     return this.http.post('/api/users/', { user });
   }
 
-  updateUser(userId: string, user: UserViewModel) {
-    return this.http.put('/api/users/' + userId, { user });
+  updateUser(email: string, user: User) {
+    return this.http.put('/api/users/' + email, { user });
   }
 
-  deleteUser(id: string) {
-    return this.http.delete('/api/users/' + id);
+  deleteUser(email: string) {
+    return this.http.delete('/api/users/' + email);
   }
 }
