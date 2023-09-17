@@ -286,6 +286,26 @@ router.put("/users/:id", (req, res, next) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/users/{email}:
+ *   delete:
+ *     summary: Delete a user by email
+ *     description: Soft delete a user by setting isDisabled to true.
+ *     parameters:
+ *       - in: path
+ *         name: email
+ *         required: true
+ *         description: Email of the user to delete.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '204':
+ *         description: User deleted successfully.
+ *       '404':
+ *         description: User not found.
+ */
+
 // Delete user (soft delete by setting isDisabled to true)
 router.delete("/:email", (req, res, next) => {
   try {
@@ -305,7 +325,9 @@ router.delete("/:email", (req, res, next) => {
 
       // check if update occurred and return 404 if not
       if (result.modifiedCount !== 1) {
-        const err = new Error("Unable to delete user with email " + email + " User not found.");
+        const err = new Error(
+          "Unable to delete user with email " + email + " User not found."
+        );
         err.status = 404;
         console.log("err", err);
         next(err);
@@ -316,7 +338,7 @@ router.delete("/:email", (req, res, next) => {
       res.status(204).send();
     });
 
-  // catch and log errors if any
+    // catch and log errors if any
   } catch (err) {
     console.log("err", err);
     next(err);

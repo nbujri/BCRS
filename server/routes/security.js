@@ -25,6 +25,32 @@ const signinSchema = {
   additionalProperties: false,
 };
 
+/**
+ * @swagger
+ * /api/security/signin:
+ *   post:
+ *     summary: Sign in
+ *     description: Sign in with email and password.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       '200':
+ *         description: User signed in successfully.
+ *       '400':
+ *         description: Bad Request.
+ *       '401':
+ *         description: Not Authorized.
+ */
+
 // POST: Sign in
 router.post("/signin", (req, res, next) => {
   try {
@@ -49,7 +75,7 @@ router.post("/signin", (req, res, next) => {
         .collection("users")
         .findOne({ email: signin.email });
 
-        // if user is not found, return 401 status code
+      // if user is not found, return 401 status code
       if (!user) {
         const err = new Error("Not Authorized");
         err.status = 401;
@@ -84,5 +110,4 @@ router.post("/signin", (req, res, next) => {
   }
 });
 
-// POST: Register user
 module.exports = router;
