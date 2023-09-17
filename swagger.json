@@ -68,6 +68,17 @@
             "description": "Not Found"
           }
         }
+      },
+      "get": {
+        "tags": ["Users"],
+        "summary": "findAllUsers",
+        "description": "Find all users",
+        "operationId": "findAllUsers",
+        "responses": {
+          "200": {
+            "description": "Users found successfully"
+          }
+        }
       }
     },
     "/api/users/{email}": {
@@ -90,6 +101,90 @@
         "responses": {
           "204": {
             "description": "User deleted successfully"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Users"],
+        "summary": "Update a user by email",
+        "description": "Update a user's information",
+        "operationId": "updateUserByEmail",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "required": true,
+            "description": "Email of the user to update",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "phoneNumber": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  }
+                },
+                "required": ["email"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "User updated successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Users"],
+        "summary": "findById",
+        "description": "Find a user by email",
+        "operationId": "findUserByEmail",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "required": true,
+            "description": "Email of the user to find",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User found successfully"
           },
           "404": {
             "description": "User not found"
