@@ -279,25 +279,6 @@ router.put("/:email", (req, res, next) => {
   }
 });
 
-/**
- * @swagger
- * /api/users/{email}:
- *   delete:
- *     summary: Delete a user by email
- *     description: Soft delete a user by setting isDisabled to true.
- *     parameters:
- *       - in: path
- *         name: email
- *         required: true
- *         description: Email of the user to delete.
- *         schema:
- *           type: string
- *     responses:
- *       '204':
- *         description: User deleted successfully.
- *       '404':
- *         description: User not found.
- */
 
 // Delete user (soft delete by setting isDisabled to true)
 router.delete("/:email", (req, res, next) => {
