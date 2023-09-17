@@ -3,11 +3,18 @@ Modified by: Caitlynne Johnson
 Date: 9/13/23
 -->
 
-<nav class="ps-3 navbar navbar-expand-sm navbar-danger bg-danger fixed top">
+<nav class="ps-3 navbar navbar-expand-sm navbar-danger bg-danger fixed-top">
   <a routeLink="/" class="navbar-brand">Bob's Computer Repair Services</a>
 
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarResponsive"
+    aria-controls="navbarResponsive"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -28,10 +35,36 @@ Date: 9/13/23
         <a routerLink="#" class="nav-link">FAQ</a>
       </li>
       <li class="nav-item">
-        <a routerLink="#" class="nav-link">User Config</a>
+        <a routerLink="" class="nav-link">User Config</a>
       </li>
       <li class="nav-item">
         <a routerLink="#" class="nav-link">Service Graphs</a>
+      </li>
+
+      <!-- drop down -->
+      <li class="nav-item dropdown" *ngIf="isSignedIn">
+        <a
+          href="#"
+          class="nav-link pe-3"
+          id="navDropdown"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <span class="material-icons">person</span>
+        </a>
+
+        <ul
+          class="dropdown-menu dropdown-menu-end text-center"
+          aria-labelledby="navDropdown"
+        >
+          <li>{{ sessionUser.fullName }}</li>
+          <hr />
+          <li><a href=""></a></li>
+          <li>
+            <a class="dropdown-item link" (click)="signout()">Sign Out</a>
+          </li>
+        </ul>
       </li>
     </ul>
   </div>
