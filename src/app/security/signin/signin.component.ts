@@ -93,7 +93,7 @@ export class SigninComponent {
         console.log('err', err)
 
         if (err.error.status === 401) {
-          this.errorMessage = err.message
+          this.errorMessage = err.error.message
           return
         }
       }
