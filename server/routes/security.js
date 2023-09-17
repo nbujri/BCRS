@@ -25,31 +25,6 @@ const signinSchema = {
   additionalProperties: false,
 };
 
-/**
- * @swagger
- * /api/security/signin:
- *   post:
- *     summary: Sign in
- *     description: Sign in with email and password.
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *               password:
- *                 type: string
- *     responses:
- *       '200':
- *         description: User signed in successfully.
- *       '400':
- *         description: Bad Request.
- *       '401':
- *         description: Not Authorized.
- */
 
 // POST: Sign in
 router.post("/signin", (req, res, next) => {
@@ -93,10 +68,10 @@ router.post("/signin", (req, res, next) => {
 
       // if the password is not valid, return 401 status code
       if (!passwordIsValid) {
-        const err = new Error("Not Authorized");
+        const err = new Error("Invalid Password please try again.");
         err.status = 401;
-        err.message = "Not Authorized: The email or password is invalid.";
-        console.log("Not Authorized: The email or password is invalid.", err);
+        err.message = "Not Authorized: Password incorrect.";
+        console.log("Not Authorized: Password incorrect.", err);
         next(err);
         return;
       }
