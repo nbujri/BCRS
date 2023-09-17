@@ -24,7 +24,7 @@ const routes: Routes = [
       },
       {
         // path to user-update component
-        path: 'user-update',
+        path: 'users/:email/user-update',
         component: UserUpdateComponent,
         title: 'BCRS: User Update',
       },
