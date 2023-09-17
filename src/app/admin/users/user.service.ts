@@ -28,7 +28,7 @@ export class UserService {
     return this.http.post('/api/users/', { user });
   }
 
-  updateUser(email: string, user: User) {
+  updateUser(email: string, user: UserViewModel) {
     return this.http.put('/api/users/' + email, { user });
   }
 

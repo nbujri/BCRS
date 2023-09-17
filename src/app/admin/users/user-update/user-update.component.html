@@ -1,1 +1,218 @@
-<p>user-update works!</p>
+<!--
+  title: user-update.component.html
+  author: ngi bujri
+  date: september 16 2023
+  description: user update page
+-->
+
+<div class="container-fluid">
+  <div class="row justify-content-center pt-4">
+    <div class="col-10">
+      <div class="card">
+        <div class="row card-body justify-content-center">
+          <div class="col-6 text-center">
+            <div class="card-body border p-5">
+              <h2>Update user</h2>
+              <form [formGroup]="userUpdateForm" (ngSubmit)="updateUser()">
+                <fieldset class="form-group">
+                  <!-- email error handling -->
+                  <div
+                    *ngIf="
+                      userUpdateForm.controls['email'].touched &&
+                      userUpdateForm.controls['email'].hasError('required')
+                    "
+                  >
+                    <div
+                      class="alert alert-danger alert-dismissible fade show"
+                      role="alert"
+                    >
+                      Email is required.
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="close"
+                      ></button>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="userUpdateForm.controls['email'].hasError('email')"
+                  >
+                    <div
+                      class="alert alert-danger alert-dismissible fade show"
+                      role="alert"
+                    >
+                      Please enter a valid email address.
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="close"
+                      ></button>
+                    </div>
+                  </div>
+                  <!-- end email error handling -->
+
+                  <!-- email input -->
+                  <div class="mb-3">
+                    <label for="email">*Email:</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      formControlName="email"
+                      required
+                    />
+                  </div>
+                  <!-- first name input error handling -->
+                  <div
+                    *ngIf="
+                      userUpdateForm.controls['firstName'].touched &&
+                      userUpdateForm.controls['firstName'].hasError('required')
+                    "
+                  >
+                    <div
+                      class="alert alert-danger alert-dismissible fade show"
+                      role="alert"
+                    >
+                      First name is required.
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="close"
+                      ></button>
+                    </div>
+                  </div>
+                  <!-- end first name error handling -->
+
+                  <!-- first name input -->
+                  <div class="mb-3">
+                    <label for="firstName">*First Name:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="firstName"
+                      formControlName="firstName"
+                      required
+                    />
+                  </div>
+
+                  <!-- last name error handling -->
+                  <div
+                    *ngIf="
+                      userUpdateForm.controls['lastName'].touched &&
+                      userUpdateForm.controls['lastName'].hasError('required')
+                    "
+                  >
+                    <div
+                      class="alert alert-danger alert-dismissible fade show"
+                      role="alert"
+                    >
+                      Last name is required.
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="close"
+                      ></button>
+                    </div>
+                  </div>
+                  <!-- end last name error handling -->
+
+                  <!-- last name input -->
+                  <div class="mb-3">
+                    <label for="lastName">*Last Name:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="lastName"
+                      formControlName="lastName"
+                      required
+                    />
+                  </div>
+                  <!-- Address input -->
+                  <div class="mb-3">
+                    <label for="address">Address:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="address"
+                      id="address"
+                    />
+                  </div>
+                  <!-- phone input -->
+                  <div class="mb-3">
+                    <label for="phoneNumber">Phone:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="phoneNumber"
+                      id="phoneNumber"
+                    />
+                  </div>
+
+                  <!-- role error handling -->
+                  <div
+                    *ngIf="
+                      userUpdateForm.controls['role'].touched &&
+                      userUpdateForm.controls['role'].hasError('required')
+                    "
+                  >
+                    <div
+                      class="alert alert-danger alert-dismissible fade show"
+                      role="alert"
+                    >
+                      Role is required.
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="close"
+                      ></button>
+                    </div>
+                  </div>
+                  <!-- end role error handling -->
+
+                  <!-- role input -->
+                  <div class="mb-5">
+                    <label for="role">*Role:</label>
+                    <select
+                      name="role"
+                      id="role"
+                      class="form-select"
+                      formControlName="role"
+                      required
+                    >
+                      <option value="standard">Standard</option>
+                      <option value="admin">Admin</option>
+                    </select>
+                  </div>
+                </fieldset>
+                <!-- note -->
+                <p><strong>*Required Fields</strong></p>
+                <!-- buttons -->
+                <div class="row mt-5 gy-4">
+                  <button
+                    type="submit"
+                    class="btn btn-dark"
+                    [disabled]="!userUpdateForm.valid"
+                  >
+                    Submit
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-dark"
+                    routerLink="/admin/users"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
