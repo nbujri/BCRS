@@ -279,21 +279,59 @@ router.put("/:email", (req, res, next) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/users/{email}:
+ *   delete:
+ *     summary: Delete a user by email
+ *     description: Soft delete a user by setting isDisabled to true.
+ *     parameters:
+ *       - in: path
+ *         name: email
+ *         required: true
+ *         description: Email of the user to delete.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '204':
+ *         description: User deleted successfully.
+ *       '404':
+ *         description: User not found.
+ */
+
 // Delete user (soft delete by setting isDisabled to true)
-router.delete("/:id", (req, res, next) => {
+router.delete("/:email", (req, res, next) => {
   try {
-    const { id } = req.params; // store id from params
-    console.log(id);
+    let { email } = req.params; // store email from params in variable
+    console.log("email", email);
 
     mongo(async (db) => {
-      // update user
-      const result = await db
-        .collection("users")
-        .updateOne({ email: id }, { $set: { isDisabled: true } });
-      console.log("result", result);
+      // update user by email
+      const result = await db.collection("users").updateOne(
+        { email },
+        {
+          $set: {
+            isDisabled: true,
+          },
+        }
+      );
 
-      res.json(result); // send back response as json
-    }, next);
+      // check if update occurred and return 404 if not
+      if (result.modifiedCount !== 1) {
+        const err = new Error(
+          "Unable to delete user with email " + email + " User not found."
+        );
+        err.status = 404;
+        console.log("err", err);
+        next(err);
+        return;
+      }
+      // return 204 status code if update occurred
+      console.log("User Updated: ", result);
+      res.status(204).send();
+    });
+
+    // catch and log errors if any
   } catch (err) {
     console.log("err", err);
     next(err);
