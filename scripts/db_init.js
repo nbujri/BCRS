@@ -304,20 +304,6 @@ async function dbInit() {
           invoiceTotal: 130.0,
           orderDate: "2023-09-08",
         },
-        {
-          email: "customer6@example.com",
-          fullName: "Customer Six",
-          lineItems: [
-            { name: "Monitor Repair", price: 70.0 },
-            { name: "Graphics Card Upgrade", price: 100.0 },
-            { name: "Data Transfer", price: 45.0 },
-          ],
-          partsAmount: 170.0,
-          laborAmount: 60.0,
-          lineItemTotal: 230.0,
-          invoiceTotal: 240.0,
-          orderDate: "2023-09-07",
-        },
       ];
       await db.collection("invoices").insertMany(invoicesData);
 

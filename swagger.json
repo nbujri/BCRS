@@ -69,6 +69,69 @@
           }
         }
       }
+    },
+    "/api/users/{email}": {
+      "delete": {
+        "tags": ["Users"],
+        "summary": "Delete a user by email",
+        "description": "Soft delete a user by setting isDisabled to true",
+        "operationId": "deleteUserByEmail",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "required": true,
+            "description": "Email of the user to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "User deleted successfully"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/api/security/signin": {
+      "post": {
+        "summary": "Sign in",
+        "description": "Sign in with email and password",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": ["email", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User signed in successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          }
+        }
+      }
     }
   }
 }
