@@ -1,141 +1,141 @@
-
-<!-- Title: home.component.html 
+<!-- Title: home.component.html
       Modified by: Caitlynne Johnson
       Date: 9/13/23-->
 
-      <!-- User's profile -->
-      <div class="container py-4">
-    
-        <div class="p-5 mb-4 bg-light">
-          <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold m-5">Welcome, User!</h1>
-            <div class="container">
-              <div class="row text-center">
-                  <div class="col-md-6">
-                      <img src="./assets/user-icon.png" width="200px">
+<!-- User's profile -->
+<div class="container py-4">
+
+  <div class="p-5 mb-4 bg-light">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold m-5">Welcome, User!</h1>
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-6">
+            <img src="./assets/user-icon.png" width="200px">
+          </div>
+          <div class="col-md-6">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.</p>
+            <button type="button" class="btn btn-link">Edit Profile</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end of User's profile -->
+  <!-- start of news section, source: https://mdbootstrap.com/docs/standard/extended/news-feed/-->
+  <div class="row align-items-md-stretch">
+    <div class="col-md-6">
+      <div class="h-100 p-5 text-white bg-light">
+        <h1 class="display-5 fw-bold text-warning text-center">News</h1>
+        <div class="overflow-hidden">
+          <!--Table-->
+          <table class="table-responsive">
+          </table>
+          <table class="table table-hover table-forum text-center">
+            <!--Table head-->
+            <thead>
+              <tr>
+                <th></th>
+                <th class="text-left">Topic</th>
+                <th>Comments</th>
+              </tr>
+            </thead>
+            <!--Table head-->
+            <!--Table body-->
+            <tbody>
+              <tr>
+                <td scope="row" class="text-nowrap">
+
+                </td>
+                <td class="text-start">
+                  <a href="#" class="font-weight-bold blue-text">
+                    Welcome our newest employee - Parvati Patil!
+                  </a>
+                  <div class="my-2">
+                    <a href="#" class="blue-text">
+                      <strong>Wolfgang Mozart</strong>
+                    </a>
+                    <span class="badge bg-danger mx-1">Staff</span><span class="badge bg-warning mx-1">Important</span>
+                    <span>1 day ago</span>
+                    <div></div>
                   </div>
-                  <div class="col-md-6">
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                      <button type="button" class="btn btn-link">Edit Profile</button>
-                    </div>
-                  
-              </div>
-          </div>
-          </div>
+                </td>
+                <td>
+                  <a href="#" class="text-dark">
+                    <span>20</span>
+                    <i class="fas fa-comments ml-1"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="text-nowrap">
+                </td>
+                <td class="text-start">
+                  <a href="#" class="font-weight-bold blue-text">
+                    End of the Summer Bash Party Information </a>
+                  <div class="my-2">
+                    <a href="#" class="blue-text">
+                      <strong>Wolfgang Mozart</strong>
+                    </a>
+                    <span class="badge bg-danger mx-1">Staff</span><span class="badge bg-warning mx-1">Important</span>
+                    <span>2 days ago</span>
+                  </div>
+                  <div></div>
+                </td>
+                <td>
+                  <a href="#" class="text-dark">
+                    <span>8</span>
+                    <i class="fas fa-comments ml-1"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="text-nowrap">
+                </td>
+                <td class="text-start">
+                  <a href="#" class="font-weight-bold blue-text">
+                    10 easy ways to improve your productivity!
+                  </a>
+                  <div class="my-2">
+                    <a href="#" class="blue-text">
+                      <strong>Heromine Granger</strong>
+                    </a>
+                    <span class="badge bg-danger mx-1">Staff</span><span class="badge bg-warning mx-1">Important</span>
+                    <span>6 days ago</span>
+                    <div></div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#" class="text-dark">
+                    <span>11</span>
+                    <i class="fas fa-comments ml-1"></i>
+                  </a>
+
+
+
+                </td>
+              </tr>
+            </tbody>
+            <!--Table body-->
+          </table>
+
+          <!-- end of news -->
+
         </div>
-    <!-- end of User's profile -->
-    <!-- start of news section, source: https://mdbootstrap.com/docs/standard/extended/news-feed/-->
-        <div class="row align-items-md-stretch">
-          <div class="col-md-6">
-            <div class="h-100 p-5 text-white bg-light">
-              <h1 class="display-5 fw-bold text-warning text-center">News</h1>
-              <div class="overflow-hidden">
-               <!--Table-->
-    <table class="table-responsive">
-    </table>
-    <table class="table table-hover table-forum text-center">
-      <!--Table head-->
-      <thead>
-        <tr>
-          <th></th>
-          <th class="text-left">Topic</th>
-          <th>Comments</th>
-        </tr>
-      </thead>
-      <!--Table head-->
-      <!--Table body-->
-      <tbody>
-        <tr>
-          <td scope="row" class="text-nowrap">
+      </div>
+    </div>
 
-          </td>
-          <td class="text-start">
-            <a href="#" class="font-weight-bold blue-text">
-              Welcome our newest employee - Parvati Patil! 
-            </a>
-            <div class="my-2">
-              <a href="#" class="blue-text">
-                <strong>Wolfgang Mozart</strong>
-              </a>
-              <span class="badge bg-danger mx-1">Staff</span><span
-                class="badge bg-warning mx-1">Important</span>
-              <span>1 day ago</span>
-              <div></div>
-            </div>
-          </td>
-          <td>
-            <a href="#" class="text-dark">
-              <span>20</span>
-              <i class="fas fa-comments ml-1"></i>
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td scope="row" class="text-nowrap">
-          </td>
-          <td class="text-start">
-            <a href="#" class="font-weight-bold blue-text">
-              End of the Summer Bash Party Information </a>
-            <div class="my-2">
-              <a href="#" class="blue-text">
-                <strong>Wolfgang Mozart</strong>
-              </a>
-              <span class="badge bg-danger mx-1">Staff</span><span
-                class="badge bg-warning mx-1">Important</span>
-              <span>2 days ago</span>
-            </div>
-            <div></div>
-          </td>
-          <td>
-            <a href="#" class="text-dark">
-              <span>8</span>
-              <i class="fas fa-comments ml-1"></i>
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td scope="row" class="text-nowrap">
-          </td>
-          <td class="text-start">
-            <a href="#" class="font-weight-bold blue-text">
-              10 easy ways to improve your productivity!
-            </a>
-            <div class="my-2">
-              <a href="#" class="blue-text">
-                <strong>Heromine Granger</strong>
-              </a>
-              <span class="badge bg-danger mx-1">Staff</span><span
-                class="badge bg-warning mx-1">Important</span>
-              <span>6 days ago</span>
-              <div></div>
-            </div>
-          </td>
-          <td>
-            <a href="#" class="text-dark">
-              <span>11</span>
-              <i class="fas fa-comments ml-1"></i>
-            </a>
-          
-
-          
-          </td>
-        </tr>
-      </tbody>
-      <!--Table body-->
-    </table>
-
-    <!-- end of news -->
-
-            </div>
-          </div>
-          </div>
-
-          <!-- start of tickets -->
-          <div class="col-md-6">
-            <div class="h-100 p-5 bg-light border">
-              <h1 class="display-5 fw-bold text-warning text-center">Tickets</h1>
-              There are currently no tickets. 
-            </div>
-          </div>
-        </div>
-<!-- end of tickets -->
+    <!-- start of tickets -->
+    <div class="col-md-6">
+      <div class="h-100 p-5 bg-light border">
+        <h1 class="display-5 fw-bold text-warning text-center">Tickets</h1>
+        There are currently no tickets.
+      </div>
+    </div>
+  </div>
+  <!-- end of tickets -->

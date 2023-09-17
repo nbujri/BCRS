@@ -287,20 +287,34 @@ router.put("/users/:id", (req, res, next) => {
 });
 
 // Delete user (soft delete by setting isDisabled to true)
-router.delete("/:id", (req, res, next) => {
+router.delete("/:email", (req, res, next) => {
   try {
-    const { id } = req.params; // store id from params
-    console.log(id);
+    let { email } = req.params; // store email from params in variable
+    console.log("email", email);
 
     mongo(async (db) => {
-      // update user
-      const result = await db
-        .collection("users")
-        .updateOne({ email: id }, { $set: { isDisabled: true } });
-      console.log("result", result);
+      // update user by email
+      const result = await db.collection("users").updateOne(
+        { email },
+        {
+          $set: {
+            isDisabled: true,
+          },
+        }
+      );
 
-      res.json(result); // send back response as json
-    }, next);
+      // check if update occurred and return 404 if not
+      if (result.modifiedCount !== 1) {
+        const err = new Error("Unable to delete user with email " + email + " User not found.");
+        err.status = 404;
+        console.log("err", err);
+        next(err);
+        return;
+      }
+
+      console.log("User Updated: ", result);
+      res.status(204).send();
+    });
   } catch (err) {
     console.log("err", err);
     next(err);
