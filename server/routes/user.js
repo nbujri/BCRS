@@ -311,10 +311,12 @@ router.delete("/:email", (req, res, next) => {
         next(err);
         return;
       }
-
+      // return 204 status code if update occurred
       console.log("User Updated: ", result);
       res.status(204).send();
     });
+
+  // catch and log errors if any
   } catch (err) {
     console.log("err", err);
     next(err);
