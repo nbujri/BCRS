@@ -7,7 +7,9 @@
   "basePath": "/",
   "tags": [
     {
-      "name": "Users",
+      "name": "Users"
+    },
+    {
       "name": "Security"
     }
   ],
