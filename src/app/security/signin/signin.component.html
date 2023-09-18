@@ -11,7 +11,7 @@
   <div class="row justify-content-center mt-5">
     <div class="col-lg-6 col-md-5 col-sm-6">
       <!-- card -->
-      <div class="card shadow p-5">
+      <div class="card shadow p-5 text-yellow">
         <!-- card title -->
         <div class="card-title">
           <h2>User Sign In</h2>
@@ -137,7 +137,7 @@
             <!-- buttons -->
             <div class="row gy-3 mt-5">
               <button
-                class="btn btn-dark"
+                class="btn btn-dark text-yellow"
                 type="submit"
                 [disabled]="!signinForm.valid"
               >
@@ -147,10 +147,18 @@
                 TODO:
                 * buttons below for sprint 2, disable for now
               -->
-              <button class="btn btn-dark" routerLink="#" disabled="true">
+              <button
+                class="btn btn-dark text-yellow"
+                routerLink="#"
+                disabled="true"
+              >
                 Forgot Password?
               </button>
-              <button class="btn btn-dark" routerLink="#" disabled="true">
+              <button
+                class="btn btn-dark text-yellow"
+                routerLink="#"
+                disabled="true"
+              >
                 Register
               </button>
             </div>

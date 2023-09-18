@@ -5,13 +5,13 @@
   description: user update page
 -->
 
-<div class="container-fluid">
+<div class="container-fluid bg">
   <div class="row justify-content-center pt-4">
     <div class="col-10">
       <div class="card">
-        <div class="row card-body justify-content-center">
+        <div class="row card-body justify-content-center bg">
           <div class="col-6 text-center">
-            <div class="card-body border p-5">
+            <div class="card-body border p-5 update-form-card">
               <h2>Update user</h2>
               <form [formGroup]="userUpdateForm" (ngSubmit)="updateUser()">
                 <fieldset class="form-group">
@@ -195,14 +195,14 @@
                 <div class="row mt-5 gy-4">
                   <button
                     type="submit"
-                    class="btn btn-dark"
+                    class="btn btn-dark btn-yellow-text"
                     [disabled]="!userUpdateForm.valid"
                   >
                     Submit
                   </button>
                   <button
                     type="button"
-                    class="btn btn-dark"
+                    class="btn btn-dark btn-yellow-text"
                     routerLink="/admin/users"
                   >
                     Cancel

@@ -1,0 +1,19 @@
+/*
+  title: user-update.component.css
+  author: ngi bujri
+  date: september 17 2023
+  description: styles for the update user page
+*/
+
+.bg {
+  background-color: #000;
+}
+
+.update-form-card {
+  background-color: #740001;
+  color: #eeba30;
+}
+
+.btn-yellow-text {
+  color: #eeba30;
+}

@@ -5,7 +5,7 @@ Description: User list component
 Source: Professor Krasso, Angular.io -->
 
 <!-- component container -->
-<div class="container-fluid">
+<div class="container-fluid bg">
   <!-- page title -->
   <h1 class="text-center mt-3">User Configuration</h1>
 
@@ -79,7 +79,7 @@ Source: Professor Krasso, Angular.io -->
 
     <!-- add user form -->
     <div class="col-4 text-center">
-      <div class="card-body border p-5">
+      <div class="card-body border p-5 add-user-card">
         <h2>Add User</h2>
         <form
           [formGroup]="addUserForm"
@@ -314,14 +314,14 @@ Source: Professor Krasso, Angular.io -->
           <div class="row mt-5 gy-4">
             <button
               type="submit"
-              class="btn btn-dark"
+              class="btn btn-dark btn-yellow-text"
               [disabled]="!addUserForm.valid"
             >
               Submit
             </button>
             <button
               type="button"
-              class="btn btn-dark"
+              class="btn btn-dark btn-yellow-text"
               (click)="addUserForm.reset()"
             >
               Reset

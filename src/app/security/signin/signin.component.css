@@ -3,3 +3,11 @@ Author: Megan Walker, Ngi Bujri, Caitlynne Johnson
 Date: 09-14-2023
 Description:  Signin component
 Source: Professor Krasso, Angular.io */
+
+.card {
+  background-color: #740001;
+}
+
+.text-yellow {
+  color: #eeba30 !important;
+}
