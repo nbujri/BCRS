@@ -6,12 +6,14 @@ Source: Professor Krasso, Angular.io */
 
 // imports statements
 import { Component } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers: [DatePipe]
 })
 export class HomeComponent {
-
+  myDate = Date.now();
 }
