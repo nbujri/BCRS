@@ -196,4 +196,61 @@ router.post('/register', (req, res, next) => {
   }
 })
 
+
+/**
+ * POST: resetPassword
+ */
+
+router.post('/users/:email/reset-password', (req, res, next) => {
+  try {
+    const email = req.params.email
+    const user = req.body 
+
+    console.log('User email', email)
+
+    const validate = ajv.compile(resetPasswordSchema)
+    const valid = validate(user)
+
+    if (!valid) {
+      const err = new Error('Bad Request')
+      err.status = 400
+      err.error = validate.errors 
+      console.log('Password validation errors', validate.errors)
+      next(err)
+      return 
+    }
+
+    mongo (async db => {
+      const user = await db.collection('users').findOne({ email: email })
+
+      if (!user) {
+        const err = new Error('Not Found')
+        err.status = 404
+        console.log('User not found', err)
+        next(err)
+        return
+      }
+
+      console.log('Selected User', user)
+
+      const hashedPassword = bcrypt.hashSync(user.password, saltRounds)
+
+      const result = await db.collection('users').updateOne(
+        { email: email },
+        {
+          $set: { password: hashedPassword }
+        }
+      )
+
+      console.log('MongoDB update result', result)
+
+      res.status(204).send()
+    }, next)
+  } catch (err) {
+    console.log('err', err)
+    next(err)
+  }
+})
+
+
 module.exports = router;
