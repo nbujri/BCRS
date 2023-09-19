@@ -1,7 +1,9 @@
 /**
  * title: user.js
- * author: ngi bujri
+ * author: ngi bujri , caitlynne johnson, megan walker
  * date: september 12 2023
+ * description: user.js file for the BCRS application
+ * source: Professor Krasso, Angular.io
  */
 
 "use strict";
@@ -318,5 +320,13 @@ router.delete("/:email", (req, res, next) => {
     next(err);
   }
 });
+
+// findSelectedSecurityQuestions
+/** router.get("/:email/security-questions", (req, res, next) => {
+  try {
+    const { email } = req.params;
+    console.log("email", email);
+    */
+
 
 module.exports = router;
