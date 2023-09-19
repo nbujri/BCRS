@@ -318,6 +318,131 @@
           }
         }
       }
+    },
+    "/api/register": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Register a new user",
+        "description": "Register a new user with the provided user data",
+        "operationId": "registerUser",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string"
+                      },
+                      "firstName": {
+                        "type": "string"
+                      },
+                      "lastName": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "selectedSecurityQuestions": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "questionText": {
+                              "type": "string"
+                            },
+                            "answerText": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "questionText",
+                            "answerText"
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "email",
+                      "firstName",
+                      "lastName",
+                      "password",
+                      "selectedSecurityQuestions"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User Registered"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Conflict - User already exists with the provided email"
+          }
+        }
+      }
+    },
+    "/api/users/{email}/reset-password": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Reset user password",
+        "description": "Reset the password of a user with the provided email address",
+        "operationId": "resetUserPassword",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "required": true,
+            "description": "Email of the user to reset the password for",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "password"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Password Reset Successful"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "User Not Found"
+          }
+        }
+      }
     }
   }
 }
