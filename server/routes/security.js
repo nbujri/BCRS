@@ -1,5 +1,5 @@
 /* Title: security
-Author: Megan Walker
+Author: Megan Walker Ngi Bujri Caitlynne Johnson
 Date: 09-16-2023
 Description: security.js file for the BCRS application
 Source: Professor Krasso, Angular.io */
@@ -25,7 +25,7 @@ const signinSchema = {
   additionalProperties: false,
 };
 
-// Security question schema
+// Security question schema for validation
 const securityQuestionSchema = {
   type: "array",
   items: {
@@ -39,7 +39,36 @@ const securityQuestionSchema = {
   },
 };
 
+// register schema for validation
+const registerSchema = {
+  type: "object",
+  properties: {
+    email: { type: "string" },
+    password: { type: "string" },
+    firstname: { type: "string" },
+    lastname: { type: "string" },
+    selectedSecurityQuestion: securityQuestionSchema,
+  },
+  required: [
+    "email",
+    "password",
+    "firstname",
+    "lastname",
+    "selectedSecurityQuestion",
+  ],
+  additionalProperties: false,
+};
 
+
+//reset password schema for validation
+const resetPasswordSchema = {
+  type: "object",
+  properties: {
+    password: { type: "string" },
+  },
+  required: ["password"],
+  additionalProperties: false,
+};
 
 // POST: Sign in
 router.post("/signin", (req, res, next) => {
