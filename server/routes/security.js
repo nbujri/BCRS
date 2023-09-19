@@ -59,7 +59,6 @@ const registerSchema = {
   additionalProperties: false,
 };
 
-
 //reset password schema for validation
 const resetPasswordSchema = {
   type: "object",
