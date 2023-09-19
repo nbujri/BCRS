@@ -14,7 +14,7 @@ const Ajv = require("ajv");
 const router = express.Router();
 const ajv = new Ajv();
 
-// security question schema for validation
+// sign in schema for validation
 const signinSchema = {
   type: "object",
   properties: {
@@ -24,6 +24,21 @@ const signinSchema = {
   required: ["email", "password"],
   additionalProperties: false,
 };
+
+// Security question schema
+const securityQuestionSchema = {
+  type: "array",
+  items: {
+    type: "object",
+    properties: {
+      question: { type: "string" },
+      answer: { type: "string" },
+    },
+    required: ["question", "answer"],
+    additionalProperties: false,
+  },
+};
+
 
 
 // POST: Sign in
