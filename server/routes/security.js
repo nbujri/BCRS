@@ -128,4 +128,72 @@ router.post("/signin", (req, res, next) => {
   }
 });
 
+
+// POST: registerAPI
+
+router.post('/register', (req, res, next) => {
+  try {
+    const { user } = req.body
+    console.log('user', user)
+
+    const validate = ajv.compile(registerSchema)
+    const valid = validate(user)
+
+    if (!valid) {
+      const err = new Error('Bad Request')
+      err.status = 400 
+      err.errors = validate.errors 
+      console.log('User validation errors', validate.errors)
+      next(err)
+      return
+    }
+    
+    user.password = bcrypt.hashSync(user.password, saltRounds)
+
+    mongo(async db => { 
+
+      const users = await db.collection('users')
+      .find()
+      .sort({ email: 1 }) // sort by emails
+      .toArray()
+
+      console.log('User List:', users)
+
+      const userExists = users.find(usr => usr.email === usr.email)
+
+      if (userExists) {
+        const err = new Error ('Bad Request')
+        err.status = 400
+        err.message = 'User already exists with that email'
+        console.log('User already exists', err)
+        next(err)
+        return
+      }
+
+      // info for the new user that is being put into the system 
+      const newUser = {
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        password: user.password,
+        role: 'standard',
+        selectedSecurityQuestions: user.selectedSecurityQuestions
+      }
+
+      console.log('User to be inserted into MongoDB:', newUser)
+
+      const result = await db.collection('users').insertOne(newUser)
+
+      console.log('MongoDB result:', result)
+
+      res.send({ id: result.insertedId })
+
+    }, next)
+
+  } catch (err) {
+    console.log('err', err)
+    next(err)
+  }
+})
+
 module.exports = router;
