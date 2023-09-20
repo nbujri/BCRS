@@ -57,8 +57,8 @@ const registerSchema = {
   required: [
     "email",
     "password",
-    "firstname",
-    "lastname",
+    "firstName",
+    "lastName",
     "selectedSecurityQuestion",
   ],
   additionalProperties: false,
