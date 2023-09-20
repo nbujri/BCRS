@@ -11,6 +11,10 @@ const { mongo } = require("../utils/mongo");
 const bcrypt = require("bcryptjs");
 const Ajv = require("ajv");
 const { async } = require("rxjs");
+const { convertToObject } = require("typescript");
+const {
+  ERROR,
+} = require("@angular/compiler-cli/src/ngtsc/logging/src/console_logger");
 
 const router = express.Router();
 const ajv = new Ajv();
@@ -46,8 +50,8 @@ const registerSchema = {
   properties: {
     email: { type: "string" },
     password: { type: "string" },
-    firstname: { type: "string" },
-    lastname: { type: "string" },
+    firstName: { type: "string" },
+    lastName: { type: "string" },
     selectedSecurityQuestion: securityQuestionSchema,
   },
   required: [
@@ -272,6 +276,64 @@ router.post("/verify/users/:email", (req, res, next) => {
     }, next);
   } catch (err) {
     console.log("err", err);
+    next(err);
+  }
+});
+
+// verifySecurityQuestions
+router.post("/verify/users/:email/security-questions", (req, res, next) => {
+  try {
+    // store email and security questions
+    const email = req.params.email;
+    const { questions } = req.body;
+    console.log(`email: ${email}\n questions: ${questions}`);
+
+    // validate questions against securityQuestionSchema
+    const validator = ajv.compile(securityQuestionSchema);
+    const valid = validator(questions);
+
+    // send error if questions not valid
+    if (!valid) {
+      const err = new Error("bad request");
+      err.status = 400;
+      console.log(validator.errors);
+      next(err);
+      return;
+    }
+
+    mongo(async (db) => {
+      // find user
+      const user = await db.collection("users").findOne({ email: email });
+
+      // send error if user not returned
+      if (!user) {
+        const err = new Error("user not found");
+        err.status = 404;
+        this.log("user not found", err);
+        next(err);
+        return;
+      }
+
+      console.log("user: ", user);
+
+      // send error if an answer does not match
+      if (
+        questions[0].answer !== user.selectedSecurityQuestion[0].answer ||
+        questions[1].answer !== user.selectedSecurityQuestion[1].answer ||
+        questions[2].answer !== user.selectedSecurityQuestion[2].answer
+      ) {
+        const err = new Error("unauthorized");
+        err.status = 401;
+        err.message = "answers do not match";
+        console.log(err.message);
+        next(err);
+        return;
+      }
+
+      res.status(200).send("OK");
+    }, next);
+  } catch (err) {
+    console.log(err);
     next(err);
   }
 });
