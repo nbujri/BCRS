@@ -1,1 +1,128 @@
-<p>register works!</p>
+<!--
+  title: register.component.html
+  author: ngi bujri
+  date: september 19 2023
+  description: user registration page
+-->
+
+<!-- container -->
+<div class="container-fluid black-bg pt-3 pb-3">
+  <!-- form card -->
+  <div class="card p-5 w-75 m-auto red-bg text-yellow">
+    <h1 class="text-center">User Registration</h1>
+
+    <!-- register form -->
+    <div class="card-body mt-5 w-75 m-auto">
+      <form>
+        <fieldset class="m-auto">
+          <!-- credentials -->
+          <h3>Account Credentials</h3>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="email" />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" class="form-control" id="password" />
+          </div>
+
+          <!-- personal info -->
+          <h3>Personal Information</h3>
+          <div class="mb-3">
+            <label for="firstName" class="form-label">First Name:</label>
+            <input type="text" class="form-control" id="firstName" />
+          </div>
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name:</label>
+            <input type="text" class="form-control" id="lastName" />
+          </div>
+          <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Phone:</label>
+            <input type="text" class="form-control" id="phoneNumber" />
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Address:</label>
+            <input type="text" class="form-control" id="address" />
+          </div>
+
+          <!-- security questions -->
+          <h3>Security Questions</h3>
+          <!-- q1 -->
+          <div class="mb-3 row">
+            <div class="col-6">
+              <label for="question-1" class="form-label">Question 1:</label>
+              <select
+                name="securityQuestion"
+                id="question-1"
+                class="form-select"
+              >
+                <option value="{{ q }}" *ngFor="let q of securityQuestions">
+                  {{ q }}
+                </option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="answer-1" class="form-label">Answer:</label>
+              <input type="text" class="form-control" id="answer-1" />
+            </div>
+          </div>
+
+          <!-- q2 -->
+          <div class="mb-3 row">
+            <div class="col-6">
+              <label for="question-2" class="form-label">Question 2:</label>
+              <select
+                name="securityQuestion"
+                id="question-2"
+                class="form-select"
+              >
+                <option value="{{ q }}" *ngFor="let q of securityQuestions">
+                  {{ q }}
+                </option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="answer-2" class="form-label">Answer:</label>
+              <input type="text" class="form-control" id="answer-2" />
+            </div>
+          </div>
+
+          <!-- q3 -->
+          <div class="mb-3 row">
+            <div class="col-6">
+              <label for="question-3" class="form-label">Question 3:</label>
+              <select
+                name="securityQuestion"
+                id="question-3"
+                class="form-select"
+              >
+                <option value="{{ q }}" *ngFor="let q of securityQuestions">
+                  {{ q }}
+                </option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="answer-3" class="form-label">Answer:</label>
+              <input type="text" class="form-control" id="answer-3" />
+            </div>
+          </div>
+
+          <!-- buttons -->
+          <div class="row gx-3 mt-5 justify-content-around">
+            <div class="col-5">
+              <button class="btn btn-dark w-100 text-yellow">Register</button>
+            </div>
+            <div class="col-5">
+              <button
+                class="btn btn-dark w-100 text-yellow"
+                routerLink="/security/signin"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
