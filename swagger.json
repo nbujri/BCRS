@@ -16,8 +16,10 @@
   "paths": {
     "/api/users/": {
       "post": {
-        "tags": ["Users"],
-        "summary": "createUser",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a new user",
         "description": "Create a new user",
         "operationId": "createUser",
         "requestBody": {
@@ -52,7 +54,17 @@
                   "role": {
                     "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "email",
+                  "password",
+                  "firstName",
+                  "lastName",
+                  "phoneNumber",
+                  "address",
+                  "isDisabled",
+                  "role"
+                ]
               }
             }
           }
@@ -70,8 +82,10 @@
         }
       },
       "get": {
-        "tags": ["Users"],
-        "summary": "findAllUsers",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Find all users",
         "description": "Find all users",
         "operationId": "findAllUsers",
         "responses": {
@@ -83,7 +97,9 @@
     },
     "/api/users/{email}": {
       "delete": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "Delete a user by email",
         "description": "Soft delete a user by setting isDisabled to true",
         "operationId": "deleteUserByEmail",
@@ -108,7 +124,9 @@
         }
       },
       "put": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "Update a user by email",
         "description": "Update a user's information",
         "operationId": "updateUserByEmail",
@@ -149,7 +167,9 @@
                     "type": "string"
                   }
                 },
-                "required": ["email"]
+                "required": [
+                  "email"
+                ]
               }
             }
           }
@@ -167,8 +187,10 @@
         }
       },
       "get": {
-        "tags": ["Users"],
-        "summary": "findById",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Find a user by email",
         "description": "Find a user by email",
         "operationId": "findUserByEmail",
         "parameters": [
@@ -194,7 +216,9 @@
     },
     "/api/security/signin": {
       "post": {
-        "tags": ["Security"],
+        "tags": [
+          "Security"
+        ],
         "summary": "Sign in",
         "description": "Sign in with email and password",
         "requestBody": {
@@ -211,7 +235,10 @@
                     "type": "string"
                   }
                 },
-                "required": ["email", "password"]
+                "required": [
+                  "email",
+                  "password"
+                ]
               }
             }
           }
@@ -225,6 +252,194 @@
           },
           "401": {
             "description": "Not Authorized"
+          }
+        }
+      }
+    },
+    "/api/users/{email}/security-questions": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get selected security questions for a user",
+        "description": "Retrieve the selected security questions for a user based on their email address.",
+        "operationId": "findSelectedSecurityQuestions",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "required": true,
+            "description": "The email address of the user to fetch security questions for",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing the selected security questions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    },
+                    "selectedSecurityQuestions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "questionText": {
+                            "type": "string"
+                          },
+                          "answerText": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "questionText",
+                          "answerText"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "email",
+                    "selectedSecurityQuestions"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/api/register": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Register a new user",
+        "description": "Register a new user with the provided user data",
+        "operationId": "registerUser",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string"
+                      },
+                      "firstName": {
+                        "type": "string"
+                      },
+                      "lastName": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "selectedSecurityQuestions": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "questionText": {
+                              "type": "string"
+                            },
+                            "answerText": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "questionText",
+                            "answerText"
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "email",
+                      "firstName",
+                      "lastName",
+                      "password",
+                      "selectedSecurityQuestions"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User Registered"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Conflict - User already exists with the provided email"
+          }
+        }
+      }
+    },
+    "/api/users/{email}/reset-password": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Reset user password",
+        "description": "Reset the password of a user with the provided email address",
+        "operationId": "resetUserPassword",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "required": true,
+            "description": "Email of the user to reset the password for",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "password"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Password Reset Successful"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "User Not Found"
           }
         }
       }
