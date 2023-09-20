@@ -10,6 +10,7 @@ const express = require("express");
 const { mongo } = require("../utils/mongo");
 const bcrypt = require("bcryptjs");
 const Ajv = require("ajv");
+const { async } = require("rxjs");
 
 const router = express.Router();
 const ajv = new Ajv();
@@ -128,129 +129,151 @@ router.post("/signin", (req, res, next) => {
   }
 });
 
-
 // POST: registerAPI
 
-router.post('/register', (req, res, next) => {
+router.post("/register", (req, res, next) => {
   try {
-    const { user } = req.body
-    console.log('user', user)
+    const { user } = req.body;
+    console.log("user", user);
 
-    const validate = ajv.compile(registerSchema)
-    const valid = validate(user)
+    const validate = ajv.compile(registerSchema);
+    const valid = validate(user);
 
     if (!valid) {
-      const err = new Error('Bad Request')
-      err.status = 400 
-      err.errors = validate.errors 
-      console.log('User validation errors', validate.errors)
-      next(err)
-      return
+      const err = new Error("Bad Request");
+      err.status = 400;
+      err.errors = validate.errors;
+      console.log("User validation errors", validate.errors);
+      next(err);
+      return;
     }
-    
-    user.password = bcrypt.hashSync(user.password, saltRounds)
 
-    mongo(async db => { 
+    user.password = bcrypt.hashSync(user.password, saltRounds);
 
-      const users = await db.collection('users')
-      .find()
-      .sort({ email: 1 }) // sort by emails
-      .toArray()
+    mongo(async (db) => {
+      const users = await db
+        .collection("users")
+        .find()
+        .sort({ email: 1 }) // sort by emails
+        .toArray();
 
-      console.log('User List:', users)
+      console.log("User List:", users);
 
-      const userExists = users.find(usr => usr.email === usr.email)
+      const userExists = users.find((usr) => usr.email === usr.email);
 
       if (userExists) {
-        const err = new Error ('Bad Request')
-        err.status = 400
-        err.message = 'User already exists with that email'
-        console.log('User already exists', err)
-        next(err)
-        return
+        const err = new Error("Bad Request");
+        err.status = 400;
+        err.message = "User already exists with that email";
+        console.log("User already exists", err);
+        next(err);
+        return;
       }
 
-      // info for the new user that is being put into the system 
+      // info for the new user that is being put into the system
       const newUser = {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
         password: user.password,
-        role: 'standard',
-        selectedSecurityQuestions: user.selectedSecurityQuestions
-      }
+        role: "standard",
+        selectedSecurityQuestions: user.selectedSecurityQuestions,
+      };
 
-      console.log('User to be inserted into MongoDB:', newUser)
+      console.log("User to be inserted into MongoDB:", newUser);
 
-      const result = await db.collection('users').insertOne(newUser)
+      const result = await db.collection("users").insertOne(newUser);
 
-      console.log('MongoDB result:', result)
+      console.log("MongoDB result:", result);
 
-      res.send({ id: result.insertedId })
-
-    }, next)
-
+      res.send({ id: result.insertedId });
+    }, next);
   } catch (err) {
-    console.log('err', err)
-    next(err)
+    console.log("err", err);
+    next(err);
   }
-})
-
+});
 
 /**
  * POST: resetPassword
  */
 
-router.post('/users/:email/reset-password', (req, res, next) => {
+router.post("/users/:email/reset-password", (req, res, next) => {
   try {
-    const email = req.params.email
-    const user = req.body 
+    const email = req.params.email;
+    const user = req.body;
 
-    console.log('User email', email)
+    console.log("User email", email);
 
-    const validate = ajv.compile(resetPasswordSchema)
-    const valid = validate(user)
+    const validate = ajv.compile(resetPasswordSchema);
+    const valid = validate(user);
 
     if (!valid) {
-      const err = new Error('Bad Request')
-      err.status = 400
-      err.error = validate.errors 
-      console.log('Password validation errors', validate.errors)
-      next(err)
-      return 
+      const err = new Error("Bad Request");
+      err.status = 400;
+      err.error = validate.errors;
+      console.log("Password validation errors", validate.errors);
+      next(err);
+      return;
     }
 
-    mongo (async db => {
-      const user = await db.collection('users').findOne({ email: email })
+    mongo(async (db) => {
+      const user = await db.collection("users").findOne({ email: email });
 
       if (!user) {
-        const err = new Error('Not Found')
-        err.status = 404
-        console.log('User not found', err)
-        next(err)
-        return
+        const err = new Error("Not Found");
+        err.status = 404;
+        console.log("User not found", err);
+        next(err);
+        return;
       }
 
-      console.log('Selected User', user)
+      console.log("Selected User", user);
 
-      const hashedPassword = bcrypt.hashSync(user.password, saltRounds)
+      const hashedPassword = bcrypt.hashSync(user.password, saltRounds);
 
-      const result = await db.collection('users').updateOne(
+      const result = await db.collection("users").updateOne(
         { email: email },
         {
-          $set: { password: hashedPassword }
+          $set: { password: hashedPassword },
         }
-      )
+      );
 
-      console.log('MongoDB update result', result)
+      console.log("MongoDB update result", result);
 
-      res.status(204).send()
-    }, next)
+      res.status(204).send();
+    }, next);
   } catch (err) {
-    console.log('err', err)
-    next(err)
+    console.log("err", err);
+    next(err);
   }
-})
+});
 
+// verifyUser
+router.post("/verify/users/:email", (req, res, next) => {
+  try {
+    const email = req.params.email;
+    console.log("email: ", email);
+
+    mongo(async (db) => {
+      const user = await db.collection("users").findOne({ email: email });
+
+      if (!user) {
+        const err = new Error("user not found");
+        err.status = 404;
+        console.log(err);
+        next(err);
+        return;
+      }
+
+      console.log(user);
+
+      res.status(200).send("OK");
+    }, next);
+  } catch (err) {
+    console.log("err", err);
+    next(err);
+  }
+});
 
 module.exports = router;
