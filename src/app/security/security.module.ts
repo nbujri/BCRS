@@ -14,9 +14,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SecurityRoutingModule } from './security-routing.module';
 import { SecurityComponent } from './security.component';
 import { SigninComponent } from './signin/signin.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-  declarations: [SecurityComponent, SigninComponent],
+  declarations: [SecurityComponent, SigninComponent, RegisterComponent],
   imports: [
     CommonModule,
     SecurityRoutingModule,
