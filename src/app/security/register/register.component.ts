@@ -10,7 +10,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { SecurityService } from '../security.service';
-import { UserRegister } from '../user-register';
 
 @Component({
   selector: 'app-register',

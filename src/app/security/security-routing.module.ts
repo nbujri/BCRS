@@ -40,7 +40,7 @@ const routes: Routes = [
         path: 'verify-security-questions',
         component: VerifySecurityQuestionsComponent,
         title: 'BCRS: Verify Security Questions',
-      }
+      },
       {
         path: 'reset-password',
         component: ResetPasswordComponent,
