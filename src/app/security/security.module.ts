@@ -30,4 +30,4 @@ import { VerifySecurityQuestionsComponent } from './verify-security-questions/ve
     ReactiveFormsModule,
   ],
 })
-export class SecurityModule {}
+export class SecurityModule { }
