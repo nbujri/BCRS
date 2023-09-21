@@ -23,48 +23,25 @@
 
         <!-- sign in form -->
         <div class="card-body">
-          <form
-            [formGroup]="signinForm"
-            (ngSubmit)="signin(); signinForm.reset()"
-          >
+          <form [formGroup]="signinForm" (ngSubmit)="signin(); signinForm.reset()">
             <!-- email section-->
             <!-- email error handling -->
-            <div
-              *ngIf="
+            <div *ngIf="
                 signinForm.controls['email'].touched &&
                 signinForm.controls['email'].hasError('required')
-              "
-            >
-              <div
-                class="alert alert-danger alert-dismissible fade show"
-                role="alert"
-              >
+              ">
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 Email is required.
-                <input
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="alert"
-                  aria-label="close"
-                />
+                <input type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close" />
               </div>
             </div>
-            <div
-              *ngIf="
+            <div *ngIf="
                 signinForm.controls['email'].touched &&
                 signinForm.controls['email'].hasError('email')
-              "
-            >
-              <div
-                class="alert alert-danger alert-dismissible fade show"
-                role="alert"
-              >
+              ">
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 Please enter a valid email address.
-                <input
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="alert"
-                  aria-label="close"
-                />
+                <input type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close" />
               </div>
             </div>
             <!-- end email error handling -->
@@ -72,90 +49,47 @@
             <!-- email input -->
             <div class="mb-3">
               <label for="email" class="form-label">Email:</label>
-              <input
-                type="text"
-                class="form-control"
-                id="email"
-                formControlName="email"
-              />
+              <input type="text" class="form-control" id="email" formControlName="email" />
             </div>
             <!-- end email section -->
 
             <!-- password section-->
             <!-- password error handling -->
-            <div
-              *ngIf="
+            <div *ngIf="
                 signinForm.controls['password'].touched &&
                 signinForm.controls['password'].hasError('required')
-              "
-            >
-              <div
-                class="alert alert-danger alert-dismissible fade show"
-                role="alert"
-              >
+              ">
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 Password is required.
-                <input
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="alert"
-                  aria-label="close"
-                />
+                <input type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close" />
               </div>
             </div>
-            <div
-              *ngIf="
+            <div *ngIf="
                 signinForm.controls['password'].touched &&
                 signinForm.controls['password'].hasError('password')
-              "
-            >
-              <div
-                class="alert alert-danger alert-dismissible fade show"
-                role="alert"
-              >
+              ">
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 Password must be at least 8 characters long and contain one
                 uppercase and lowercase letter, and one number
-                <input
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="alert"
-                  aria-label="close"
-                />
+                <input type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close" />
               </div>
             </div>
 
             <!-- password input -->
             <div class="mb-3">
               <label for="password" class="form-label">Password:</label>
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                formControlName="password"
-              />
+              <input type="password" class="form-control" id="password" formControlName="password" />
             </div>
 
             <!-- buttons -->
             <div class="row gy-3 mt-5">
-              <button
-                class="btn btn-dark text-yellow"
-                type="submit"
-                [disabled]="!signinForm.valid"
-              >
+              <button class="btn btn-dark text-yellow" type="submit" [disabled]="!signinForm.valid">
                 Sign In
               </button>
-              <button
-                type="button"
-                class="btn btn-dark text-yellow"
-                routerLink="register"
-                disabled="true"
-              >
+              <button type="button" class="btn btn-dark text-yellow" routerLink="/security/forgot-password">
                 Forgot Password?
               </button>
-              <a
-                class="btn btn-dark text-yellow"
-                routerLink="/security/register"
-                >Register</a
-              >
+              <a class="btn btn-dark text-yellow" routerLink="/security/register">Register</a>
             </div>
           </form>
         </div>
