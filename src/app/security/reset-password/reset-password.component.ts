@@ -1,3 +1,10 @@
+/* Title: reset-password.component
+Author: Megan Walker,  Ngi Bujri, Caitlynne Johnson
+Date: 09-20-2023
+Description: Reset password component
+Source: Professor Krasso, Angular.io
+ */
+
 import { Component } from '@angular/core';
 
 @Component({
