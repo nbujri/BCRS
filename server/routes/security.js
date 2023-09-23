@@ -266,9 +266,10 @@ router.post("/verify/users/:email", (req, res, next) => {
         return;
       }
 
-      console.log(user);
+      console.log(user.selectedSecurityQuestions);
 
-      res.status(200).send("OK");
+      res.send({ user: user });
+      //res.status(200).send("OK");
     }, next);
   } catch (err) {
     console.log("err", err);

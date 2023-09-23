@@ -344,7 +344,7 @@ router.get("/:email/security-questions", (req, res, next) => {
         return;
       }
 
-      res.send(user);
+      res.send(user.selectedSecurityQuestions);
     }, next);
   } catch (err) {
     console.log("err", err);
