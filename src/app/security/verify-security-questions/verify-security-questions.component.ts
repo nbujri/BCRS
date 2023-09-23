@@ -88,7 +88,7 @@ export class VerifySecurityQuestionsComponent {
       complete: () => {
         this.question1 = this.selectedSecurityQuestions[0].question // assign the first question to the question1 variable
         this.question2 = this.selectedSecurityQuestions[1].question // assign the first question to the question2 variable
-        //this.question3 = this.selectedSecurityQuestions[2].question // assign the first question to the question3 variable
+        this.question3 = this.selectedSecurityQuestions[2].question // assign the first question to the question3 variable
 
         console.log(this.question1)
         this.isLoadingLabels = false
