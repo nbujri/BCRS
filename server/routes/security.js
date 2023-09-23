@@ -14,6 +14,7 @@ const { async } = require("rxjs");
 
 const router = express.Router();
 const ajv = new Ajv();
+const saltRounds = 10;
 
 // sign in schema for validation
 const signinSchema = {
@@ -48,14 +49,18 @@ const registerSchema = {
     password: { type: "string" },
     firstName: { type: "string" },
     lastName: { type: "string" },
-    selectedSecurityQuestion: securityQuestionSchema,
+    phoneNumber: { type: "string" },
+    address: { type: "string" },
+    selectedSecurityQuestions: securityQuestionSchema,
   },
   required: [
     "email",
     "password",
     "firstName",
     "lastName",
-    "selectedSecurityQuestion",
+    "phoneNumber",
+    "address",
+    "selectedSecurityQuestions",
   ],
   additionalProperties: false,
 };
@@ -159,7 +164,7 @@ router.post("/register", (req, res, next) => {
 
       console.log("User List:", users);
 
-      const userExists = users.find((usr) => usr.email === usr.email);
+      const userExists = users.find((usr) => usr.email === user.email);
 
       if (userExists) {
         const err = new Error("Bad Request");
