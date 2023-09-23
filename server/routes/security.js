@@ -317,11 +317,25 @@ router.post("/verify/users/:email/security-questions", (req, res, next) => {
 
       console.log("user: ", user);
 
+      console.log(`q1: ${questions[0].question} | a1: ${questions[0].answer}`);
+      console.log(`q2: ${questions[1].question} | a2: ${questions[1].answer}`);
+      console.log(`q3: ${questions[2].question} | a3: ${questions[2].answer}`);
+
+      console.log(
+        `q1: ${user.selectedSecurityQuestions[0].question} | a1: ${user.selectedSecurityQuestions[0].answer}`
+      );
+      console.log(
+        `q2: ${user.selectedSecurityQuestions[1].question} | a2: ${user.selectedSecurityQuestions[0].answer}`
+      );
+      console.log(
+        `q3: ${user.selectedSecurityQuestions[2].question} | a3: ${user.selectedSecurityQuestions[0].answer}`
+      );
+
       // send error if an answer does not match
       if (
-        questions[0].answer !== user.selectedSecurityQuestion[0].answer ||
-        questions[1].answer !== user.selectedSecurityQuestion[1].answer ||
-        questions[2].answer !== user.selectedSecurityQuestion[2].answer
+        questions[0].answer !== user.selectedSecurityQuestions[0].answer ||
+        questions[1].answer !== user.selectedSecurityQuestions[1].answer ||
+        questions[2].answer !== user.selectedSecurityQuestions[2].answer
       ) {
         const err = new Error("unauthorized");
         err.status = 401;
