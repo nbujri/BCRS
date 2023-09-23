@@ -20,7 +20,14 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { VerifySecurityQuestionsComponent } from './verify-security-questions/verify-security-questions.component';
 
 @NgModule({
-  declarations: [SecurityComponent, SigninComponent, RegisterComponent, ResetPasswordComponent, VerifyEmailComponent, VerifySecurityQuestionsComponent],
+  declarations: [
+    SecurityComponent,
+    SigninComponent,
+    RegisterComponent,
+    ResetPasswordComponent,
+    VerifyEmailComponent,
+    VerifySecurityQuestionsComponent],
+
   imports: [
     CommonModule,
     SecurityRoutingModule,

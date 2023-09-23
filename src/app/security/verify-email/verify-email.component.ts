@@ -4,63 +4,67 @@ Date: 09-20-2023
 Description: Verify email component
 Source: Professor Krasso, Angular.io */
 
+// imports from angular and our custom files
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SecurityService } from '../security.service';
 
+// component details
 @Component({
   selector: 'app-verify-email',
   templateUrl: './verify-email.component.html',
   styleUrls: ['./verify-email.component.css']
 })
 
-// export class VerifyEmailComponent implements OnInit
+// export the component details
 export class VerifyEmailComponent {
-  errorMessage: string
-  isLoading: boolean = false;
+  errorMessage: string // error message variable
+  isLoading: boolean = false // loading variables
 
-  // email form group for the verify email component
+  // email form group for the verify email form
   emailForm: FormGroup = this.fb.group({
-    email: [null, [Validators.compose([Validators.required, Validators.email])]]
-  });
+    email: ['', Validators.compose([Validators.required, Validators.email])]
+  })
 
-  //constructor with form builder, router, and security service
+  // constructor with form builder, router, and security service parameters
   constructor(private fb: FormBuilder, private router: Router, private securityService: SecurityService) {
-    this.errorMessage = "";
+    this.errorMessage = ''
   }
 
-  // verify email function that takes in the form values and calls the security service to verify the email
+  // verifyEmail function to verify the email address entered by the user
   verifyEmail() {
-    this.isLoading = true;
+    this.isLoading = true // set the isLoading variable to true
 
-    const email = this.emailForm.controls['email'].value;
+    const email = this.emailForm.controls['email'].value
 
-    // call the security service to verify the email
+    // call the security service verifyEmail function to verify the email address
     this.securityService.verifyEmail(email).subscribe({
-      // if successful, navigate to the reset password page
-      next: (res) => {
-        console.log(res);
-        this.router.navigate(['/session/verify-security-questions'], { queryParams: { email }, skipLocationChange: true })
-      },
-      // if unsuccessful, display an error message
-      error: (err) => {
-        console.log("server error from the VerifyEmail call: ", err)
 
-        //if the error is 404, display an error message
+      // if the email address is found, navigate to the verify security questions page
+      next: (res) => {
+        //console.log(res)
+        this.router.navigate(['security/verify-security-questions'], { queryParams: { email }, skipLocationChange: true }) // navigate to the verify security questions while hiding the email in the navigation link bar
+      },
+
+      // if there is an error, log the error to the console
+      error: (err) => {
+        console.log('Server Error from verifyEmail Call:', err)
+
+        // if the error status is 404, assign the error message
         if (err.status === 404) {
-          this.errorMessage = "The email address entered was not found. Please try again.";
+          this.errorMessage = 'The email address you entered was not found. Please try again'
           return
         }
 
-        // if the error is 500, display an error message
-        this.errorMessage = "There was a problem verifying the email address. Please try again later.";
-        this.isLoading = false;
+        // if the error status is 500, assign the error message
+        this.errorMessage = 'There was a problem verifying your email address. Please try again later.'
+        this.isLoading = false
       },
 
-      // if the call is successful, display a message
+      // if the call is complete, set the isLoading variable to false
       complete: () => {
-        this.isLoading = false;
+        this.isLoading = false
       }
     })
   }
