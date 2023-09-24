@@ -19,39 +19,38 @@ const routes: Routes = [
     path: '',
     component: SecurityComponent,
     title: 'BCRS: Security',
-    // child routes
     children: [
       {
         path: 'signin',
         component: SigninComponent,
-        title: 'BCRS: Sign In',
+        title: 'BCRS: Sign In'
       },
       {
         path: 'register',
         component: RegisterComponent,
-        title: 'BCRS: Register',
+        title: 'BCRS: Register New User'
       },
       {
         path: 'forgot-password',
         component: VerifyEmailComponent,
-        title: 'BCRS: Verify Email',
+        title: 'BCRS: Verify Email'
       },
       {
         path: 'verify-security-questions',
         component: VerifySecurityQuestionsComponent,
-        title: 'BCRS: Verify Security Questions',
+        title: 'BCRS: Verify Security Questions'
       },
       {
         path: 'reset-password',
         component: ResetPasswordComponent,
-        title: 'BCRS: Reset Password',
+        title: 'BCRS: Reset Password'
       }
-    ],
-  },
+    ]
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class SecurityRoutingModule {}
+export class SecurityRoutingModule { }

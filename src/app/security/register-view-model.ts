@@ -4,14 +4,18 @@ Date: 09-20-2023
 Description: Register view model
 Source: Professor Krasso, Angular.io */
 
-import { selectedSecurityQuestionsViewModel } from './selected-security-questions-view-model';
+// imports
+import { selectedSecurityQuestionsViewModel } from "./selected-security-questions-view-model"
 
+// exports
 export interface RegisterViewModel {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  address: string;
-  selectedSecurityQuestions: selectedSecurityQuestionsViewModel[];
+  firstName: string
+  lastName: string
+  email: string
+  password: string
+  phoneNumber: string
+  address: string
+  role: string
+  isDisabled: boolean
+  selectedSecurityQuestions: selectedSecurityQuestionsViewModel[]
 }

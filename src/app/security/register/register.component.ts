@@ -96,6 +96,8 @@ export class RegisterComponent implements OnInit {
       lastName: this.registerForm.get('lastName')?.value,
       phoneNumber: this.registerForm.get('phoneNumber')?.value,
       address: this.registerForm.get('address')?.value,
+      role: "standard",
+      isDisabled: false,
       selectedSecurityQuestions: [
         {
           question: this.registerForm.get('question1')?.value,

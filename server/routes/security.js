@@ -271,9 +271,10 @@ router.post("/verify/users/:email", (req, res, next) => {
         return;
       }
 
-      console.log(user);
+      console.log(user.selectedSecurityQuestions);
 
-      res.status(200).send("OK");
+      res.send({ user: user });
+      //res.status(200).send("OK");
     }, next);
   } catch (err) {
     console.log("err", err);
@@ -286,7 +287,7 @@ router.post("/verify/users/:email/security-questions", (req, res, next) => {
   try {
     // store email and security questions
     const email = req.params.email;
-    const { questions } = req.body;
+    const { securityQuestions : questions } = req.body;
     console.log(`email: ${email}\n questions: ${questions}`);
 
     // validate questions against securityQuestionSchema
@@ -325,10 +326,10 @@ router.post("/verify/users/:email/security-questions", (req, res, next) => {
         `q1: ${user.selectedSecurityQuestions[0].question} | a1: ${user.selectedSecurityQuestions[0].answer}`
       );
       console.log(
-        `q2: ${user.selectedSecurityQuestions[1].question} | a2: ${user.selectedSecurityQuestions[0].answer}`
+        `q2: ${user.selectedSecurityQuestions[1].question} | a2: ${user.selectedSecurityQuestions[1].answer}`
       );
       console.log(
-        `q3: ${user.selectedSecurityQuestions[2].question} | a3: ${user.selectedSecurityQuestions[0].answer}`
+        `q3: ${user.selectedSecurityQuestions[2].question} | a3: ${user.selectedSecurityQuestions[2].answer}`
       );
 
       // send error if an answer does not match
@@ -345,7 +346,8 @@ router.post("/verify/users/:email/security-questions", (req, res, next) => {
         return;
       }
 
-      res.status(200).send("OK");
+      //res.status(200).send("OK");
+      res.send({ status: "ok" });
     }, next);
   } catch (err) {
     console.log(err);
