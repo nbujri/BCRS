@@ -3,3 +3,24 @@ Author: Megan Walker, Ngi Bujri, Caitlynne Johnson
 Date: 09-14-2023
 Description: Styles
 Source: Professor Krasso, Angular.io */
+
+/* Styles for the application */
+:root {
+  --hp-black: #000;
+  --hp-red: #740001;
+  --hp-yellow-dk: #d3a625;
+  --hp-yellow: #eeba30;
+}
+
+.black-bg {
+  background-color: var(--hp-black) !important;
+}
+
+.red-bg {
+  background-color: var(--hp-red)!important;
+  border: 1px solid var(--hp-yellow-dk) !important;
+}
+
+.text-yellow {
+  color: var(--hp-yellow) !important;
+}
