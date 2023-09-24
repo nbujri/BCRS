@@ -340,7 +340,7 @@ router.post("/verify/users/:email/security-questions", (req, res, next) => {
       ) {
         const err = new Error("unauthorized");
         err.status = 401;
-        err.message = "answers do not match";
+        err.message = "Invalid security question answers.";
         console.log(err.message);
         next(err);
         return;
