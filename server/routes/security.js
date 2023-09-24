@@ -14,6 +14,7 @@ const { async } = require("rxjs");
 
 const router = express.Router();
 const ajv = new Ajv();
+const saltRounds = 10;
 
 // sign in schema for validation
 const signinSchema = {
@@ -48,14 +49,18 @@ const registerSchema = {
     password: { type: "string" },
     firstName: { type: "string" },
     lastName: { type: "string" },
-    selectedSecurityQuestion: securityQuestionSchema,
+    phoneNumber: { type: "string" },
+    address: { type: "string" },
+    selectedSecurityQuestions: securityQuestionSchema,
   },
   required: [
     "email",
     "password",
     "firstName",
     "lastName",
-    "selectedSecurityQuestion",
+    "phoneNumber",
+    "address",
+    "selectedSecurityQuestions",
   ],
   additionalProperties: false,
 };
@@ -159,7 +164,7 @@ router.post("/register", (req, res, next) => {
 
       console.log("User List:", users);
 
-      const userExists = users.find((usr) => usr.email === usr.email);
+      const userExists = users.find((usr) => usr.email === user.email);
 
       if (userExists) {
         const err = new Error("Bad Request");
@@ -313,11 +318,25 @@ router.post("/verify/users/:email/security-questions", (req, res, next) => {
 
       console.log("user: ", user);
 
+      console.log(`q1: ${questions[0].question} | a1: ${questions[0].answer}`);
+      console.log(`q2: ${questions[1].question} | a2: ${questions[1].answer}`);
+      console.log(`q3: ${questions[2].question} | a3: ${questions[2].answer}`);
+
+      console.log(
+        `q1: ${user.selectedSecurityQuestions[0].question} | a1: ${user.selectedSecurityQuestions[0].answer}`
+      );
+      console.log(
+        `q2: ${user.selectedSecurityQuestions[1].question} | a2: ${user.selectedSecurityQuestions[0].answer}`
+      );
+      console.log(
+        `q3: ${user.selectedSecurityQuestions[2].question} | a3: ${user.selectedSecurityQuestions[0].answer}`
+      );
+
       // send error if an answer does not match
       if (
-        questions[0].answer !== user.selectedSecurityQuestion[0].answer ||
-        questions[1].answer !== user.selectedSecurityQuestion[1].answer ||
-        questions[2].answer !== user.selectedSecurityQuestion[2].answer
+        questions[0].answer !== user.selectedSecurityQuestions[0].answer ||
+        questions[1].answer !== user.selectedSecurityQuestions[1].answer ||
+        questions[2].answer !== user.selectedSecurityQuestions[2].answer
       ) {
         const err = new Error("unauthorized");
         err.status = 401;

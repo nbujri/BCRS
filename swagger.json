@@ -16,9 +16,7 @@
   "paths": {
     "/api/users/": {
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Create a new user",
         "description": "Create a new user",
         "operationId": "createUser",
@@ -82,9 +80,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Find all users",
         "description": "Find all users",
         "operationId": "findAllUsers",
@@ -97,9 +93,7 @@
     },
     "/api/users/{email}": {
       "delete": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Delete a user by email",
         "description": "Soft delete a user by setting isDisabled to true",
         "operationId": "deleteUserByEmail",
@@ -124,9 +118,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Update a user by email",
         "description": "Update a user's information",
         "operationId": "updateUserByEmail",
@@ -167,9 +159,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "email"
-                ]
+                "required": ["email"]
               }
             }
           }
@@ -187,9 +177,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Find a user by email",
         "description": "Find a user by email",
         "operationId": "findUserByEmail",
@@ -216,9 +204,7 @@
     },
     "/api/security/signin": {
       "post": {
-        "tags": [
-          "Security"
-        ],
+        "tags": ["Security"],
         "summary": "Sign in",
         "description": "Sign in with email and password",
         "requestBody": {
@@ -235,10 +221,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "email",
-                  "password"
-                ]
+                "required": ["email", "password"]
               }
             }
           }
@@ -258,9 +241,7 @@
     },
     "/api/users/{email}/security-questions": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Get selected security questions for a user",
         "description": "Retrieve the selected security questions for a user based on their email address.",
         "operationId": "findSelectedSecurityQuestions",
@@ -298,17 +279,11 @@
                             "type": "string"
                           }
                         },
-                        "required": [
-                          "questionText",
-                          "answerText"
-                        ]
+                        "required": ["questionText", "answerText"]
                       }
                     }
                   },
-                  "required": [
-                    "email",
-                    "selectedSecurityQuestions"
-                  ]
+                  "required": ["email", "selectedSecurityQuestions"]
                 }
               }
             }
@@ -321,9 +296,7 @@
     },
     "/api/register": {
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Register a new user",
         "description": "Register a new user with the provided user data",
         "operationId": "registerUser",
@@ -361,10 +334,7 @@
                               "type": "string"
                             }
                           },
-                          "required": [
-                            "questionText",
-                            "answerText"
-                          ]
+                          "required": ["questionText", "answerText"]
                         }
                       }
                     },
@@ -396,9 +366,7 @@
     },
     "/api/users/{email}/reset-password": {
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Reset user password",
         "description": "Reset the password of a user with the provided email address",
         "operationId": "resetUserPassword",
@@ -424,9 +392,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "password"
-                ]
+                "required": ["password"]
               }
             }
           }
@@ -440,6 +406,91 @@
           },
           "404": {
             "description": "User Not Found"
+          }
+        }
+      }
+    },
+    "/api/security/verify/users/{email}": {
+      "post": {
+        "tags": ["Security"],
+        "summary": "Verify user email",
+        "description": "Verify if user email exists for a password reset",
+        "operationId": "verifyUser",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/security/verify/users/{email}/security-questions": {
+      "post": {
+        "tags": ["Security"],
+        "summary": "Verify user security questions",
+        "description": "Verify if user answered all 3 security questions correctly",
+        "operationId": "verifySecurityQuestions",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "questionText": {
+                      "type": "string"
+                    },
+                    "answerText": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
