@@ -56,17 +56,7 @@ export class VerifySecurityQuestionsComponent {
 
     this.securityService.findSelectedSecurityQuestions(this.email).subscribe({
       next: (data: any) => {
-        // manipulate the data into the selectedSecurityQuestions array
-        data.forEach((element: { question: {questionText: any; answerText: any; }}) => {
-          console.log(element);
-          this.selectedSecurityQuestions.push({
-            question: element.question.questionText,
-            answer: element.question.answerText
-          })
-        });
-
-
-        //this.selectedSecurityQuestions = data
+        this.selectedSecurityQuestions = data
         console.log('Users selected security questions', this.selectedSecurityQuestions)
       },
       // if there is an error, log the error to the console
