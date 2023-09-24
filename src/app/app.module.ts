@@ -19,6 +19,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
+import { FaqComponent } from './faq/faq.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {MatButtonModule} from '@angular/material/button';
     NavComponent,
     FooterComponent,
     NotFoundComponent,
+    FaqComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule, MatExpansionModule, MatButtonModule],
   providers: [],
