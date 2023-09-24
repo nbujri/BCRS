@@ -7,7 +7,7 @@ Source: Professor Krasso, Angular.io -->
 <div class="container mt-5">
   <div class="row justify-content-center mt-5">
     <div class="col-lg-8 col-md-10">
-      <div class="card shadow p-4  ">
+      <div class="card shadow p-4 red-bg text-yellow">
         <form [formGroup]="sqForm" (ngSubmit)="verifySecurityQuestions()" class="form row g-3">
           <div *ngIf="errorMessage">
             <div class="col-12">
@@ -74,7 +74,7 @@ Source: Professor Krasso, Angular.io -->
 
           </fieldset>
 
-          <button type="submit" id="submit" [disabled]="!sqForm.valid" class="btn btn-lg">
+          <button type="submit" id="submit" [disabled]="!sqForm.valid" class="btn btn-lg btn-dark w-100 text-yellow">
             <span *ngIf="!isLoadingSubmit">Verify Security Questions</span>
             <div *ngIf="isLoadingSubmit">
               <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...
