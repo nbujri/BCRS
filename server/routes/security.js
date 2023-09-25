@@ -206,12 +206,14 @@ router.post("/register", (req, res, next) => {
 router.post("/users/:email/reset-password", (req, res, next) => {
   try {
     const email = req.params.email;
-    const user = req.body;
+    const password = req.body;
+
+    console.log("User", password);
 
     console.log("User email", email);
 
     const validate = ajv.compile(resetPasswordSchema);
-    const valid = validate(user);
+    const valid = validate(password);
 
     if (!valid) {
       const err = new Error("Bad Request");
@@ -235,7 +237,7 @@ router.post("/users/:email/reset-password", (req, res, next) => {
 
       console.log("Selected User", user);
 
-      const hashedPassword = bcrypt.hashSync(user.password, saltRounds);
+      const hashedPassword = bcrypt.hashSync(password.password, saltRounds);
 
       const result = await db.collection("users").updateOne(
         { email: email },
