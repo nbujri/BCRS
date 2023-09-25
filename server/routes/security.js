@@ -63,6 +63,7 @@ const registerSchema = {
     "phoneNumber",
     "address",
     "selectedSecurityQuestions",
+    "role",
   ],
   additionalProperties: false,
 };
@@ -183,6 +184,8 @@ router.post("/register", (req, res, next) => {
         firstName: user.firstName,
         lastName: user.lastName,
         password: user.password,
+        phoneNumber: user.phoneNumber,
+        address: user.address,
         isDisabled: false,
         role: "standard",
         selectedSecurityQuestions: user.selectedSecurityQuestions,
