@@ -51,6 +51,8 @@ const registerSchema = {
     lastName: { type: "string" },
     phoneNumber: { type: "string" },
     address: { type: "string" },
+    isDisabled: { type: "boolean" },
+    role: { type: "string" },
     selectedSecurityQuestions: securityQuestionSchema,
   },
   required: [
@@ -181,6 +183,7 @@ router.post("/register", (req, res, next) => {
         firstName: user.firstName,
         lastName: user.lastName,
         password: user.password,
+        isDisabled: false,
         role: "standard",
         selectedSecurityQuestions: user.selectedSecurityQuestions,
       };
@@ -289,7 +292,7 @@ router.post("/verify/users/:email/security-questions", (req, res, next) => {
   try {
     // store email and security questions
     const email = req.params.email;
-    const { securityQuestions : questions } = req.body;
+    const { securityQuestions: questions } = req.body;
     console.log(`email: ${email}\n questions: ${questions}`);
 
     // validate questions against securityQuestionSchema
