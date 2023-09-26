@@ -15,7 +15,7 @@ const bcrypt = require("bcryptjs");
 const Ajv = require("ajv");
 const { async } = require("rxjs");
 const e = require("express");
-const cookieParser = require("cookie-parser");
+// const cookieParser = require("cookie-parser");
 
 const ajv = new Ajv();
 
