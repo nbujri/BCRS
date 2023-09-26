@@ -15,6 +15,7 @@ const bcrypt = require("bcryptjs");
 const Ajv = require("ajv");
 const { async } = require("rxjs");
 const e = require("express");
+const cookieParser = require("cookie-parser");
 
 const ajv = new Ajv();
 
@@ -380,6 +381,46 @@ router.get("/:email/security-questions", (req, res, next) => {
       }
 
       res.send(user.selectedSecurityQuestions);
+    }, next);
+  } catch (err) {
+    console.log("err", err);
+    next(err);
+  }
+});
+
+// getUserProfile
+router.get("/:email", (req, res, next) => {
+  try {
+    // store email from cookie
+    const email = req.cookies.email;
+    console.log(email);
+
+    mongo(async (db) => {
+      // return user document with matching email
+      const user = await db.collection("users").findOne(
+        { email },
+        {
+          $projection: {
+            email: 1,
+            firstName: 1,
+            lastName: 1,
+            phoneNumber: 1,
+            address: 1,
+            role: 1,
+          },
+        }
+      );
+
+      // error if user not returned
+      if (!user) {
+        const err = new Error(`Unable to find ${email}`);
+        err.status = 404;
+        console.log("err", err);
+        next(err);
+        return;
+      }
+
+      res.status(200).send("OK");
     }, next);
   } catch (err) {
     console.log("err", err);
