@@ -49,7 +49,7 @@ const routes: Routes = [
         title: 'BCRS: FAQ',
       },
       {
-        path: 'my-profile',
+        path: ':email/my-profile',
         component: MyProfileComponent,
         title: 'BCRS: My Profile',
       },
