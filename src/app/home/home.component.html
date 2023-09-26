@@ -6,7 +6,7 @@
 <div class="container py-4">
   <div class="p-5 mb-4 bg-light">
     <div class="container-fluid py-5">
-      <h1 class="display-5 fw-bold m-5">Welcome, User!</h1>
+      <h1 class="display-5 fw-bold m-5">Welcome, {{ cookie.fullName }}!</h1>
       <div class="container">
         <div class="row text-center">
           <div class="col-md-6">
@@ -20,7 +20,11 @@
               <i>Tickets</i> have been added to your account since the last time
               you logged in.
             </p>
-            <button type="button" class="btn btn-link" routerLink="/my-profile">
+            <button
+              type="button"
+              class="btn btn-link"
+              routerLink="/{{ cookie.email }}/my-profile"
+            >
               Edit Profile
             </button>
           </div>
