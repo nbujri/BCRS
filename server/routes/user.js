@@ -389,7 +389,7 @@ router.get("/:email/security-questions", (req, res, next) => {
 });
 
 // getUserProfile
-router.get("/:email", (req, res, next) => {
+router.get("/:email/my-profile", (req, res, next) => {
   try {
     // store email from cookie
     const email = req.cookies.email;
