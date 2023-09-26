@@ -14,6 +14,8 @@ import { authGuard } from './shared/auth.guard';
 import { roleGuard } from './shared/role.guard';
 import { EmployeeDirectoryComponent } from './employee-directory/employee-directory.component';
 import { FaqComponent } from './faq/faq.component';
+import { PurchasesByServiceComponent } from './purchases-by-service/purchases-by-service.component';
+import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -46,6 +48,16 @@ const routes: Routes = [
         path: 'faq',
         component: FaqComponent,
         title: 'BCRS: FAQ'
+      },
+      {
+        path: 'invoice-summary',
+        component: InvoiceSummaryComponent,
+        title: 'BCRS: Invoice Summary',
+      },
+      {
+        path: 'purchases-by-service',
+        component: PurchasesByServiceComponent,
+        title: 'BCRS: Purchases By Service'
       },
       {
         // path for admin module

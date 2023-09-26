@@ -3,3 +3,18 @@ Author: Megan Walker,  Ngi Bujri, Caitlynne Johnson
 Date: 09-14-2023
 Description: Home component
 Source: Professor Krasso, Angular.io */
+
+
+.dark-bg {
+    background-color: #740001;
+}
+
+
+.yellow-bg {
+    background-color: #eeba30;
+}
+
+
+.text-yellow {
+    color: #eeba30;
+  }

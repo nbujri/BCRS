@@ -3,3 +3,11 @@ Author: Megan Walker, Ngi Bujri, Caitlynne Johnson
 Date: 09-14-2023
 Description: Nav component
 Source: Professor Krasso, Angular.io */
+
+.dark-bg {
+    background-color: #740001;
+}
+
+.text-yellow {
+    color: #eeba30;
+  }
