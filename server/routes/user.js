@@ -127,6 +127,7 @@ const invoiceSchema = {
   additionalProperties: false,
 };
 
+// profile schema
 const profileSchema = {
   type: "object",
   properties: {
@@ -146,6 +147,19 @@ const profileSchema = {
     "lastSignInDate",
   ],
   additionalPropertiesL: false,
+};
+
+// edit profile schema
+const editProfileSchema = {
+  type: "object",
+  properties: {
+    firstName: { type: "string" },
+    lastName: { type: "string" },
+    address: { type: "string" },
+    phoneNumber: { type: "string" },
+  },
+  required: ["firstName", "lastName", "address", "phoneNumber"],
+  additionalProperties: false,
 };
 
 // findAllUsers
@@ -366,6 +380,57 @@ router.get("/:email/security-questions", (req, res, next) => {
       }
 
       res.send(user.selectedSecurityQuestions);
+    }, next);
+  } catch (err) {
+    console.log("err", err);
+    next(err);
+  }
+});
+
+// editProfile
+router.put("/:email/edit-profile", (req, res, next) => {
+  try {
+    // get request body
+    const { user } = req.body;
+    const email = req.params.email;
+
+    // validate user
+    const validator = ajv.compile(editProfileSchema);
+    const isValid = validator(user);
+
+    // error for invalid schema
+    if (!isValid) {
+      const err = new Error("Bad Request");
+      err.status = 400;
+      err.errors = validator.errors;
+      console.log("Schema Validation Failed", err.message);
+      next(err);
+      return;
+    }
+
+    mongo(async (db) => {
+      const update = await db.collection("users").updateOne(
+        { email },
+        {
+          $set: {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            phoneNumber: user.phoneNumber,
+            address: user.address,
+          },
+        }
+      );
+
+      if (update.nModified !== 1) {
+        const err = new Error("Unable to update user profile");
+        err.status = 500;
+        console.log("err", err);
+        next(err);
+        return;
+      }
+
+      console.log("Updated User Info: ", update);
+      res.status(204).send("No Content");
     }, next);
   } catch (err) {
     console.log("err", err);
