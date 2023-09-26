@@ -127,6 +127,27 @@ const invoiceSchema = {
   additionalProperties: false,
 };
 
+const profileSchema = {
+  type: "object",
+  properties: {
+    firstName: { type: "string" },
+    lastName: { type: "string" },
+    email: { type: "string" },
+    address: { type: "string" },
+    phoneNumber: { type: "string" },
+    lastSignInDate: { type: "date" },
+  },
+  required: [
+    "firstName",
+    "lastName",
+    "email",
+    "address",
+    "phoneNumber",
+    "lastSignInDate",
+  ],
+  additionalPropertiesL: false,
+};
+
 // findAllUsers
 
 router.get("/", (req, res, next) => {
