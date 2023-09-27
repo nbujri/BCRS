@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
 import { FaqComponent } from './faq/faq.component';
+import { ServiceRepairComponent } from './service-repair/service-repair.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { FaqComponent } from './faq/faq.component';
     FooterComponent,
     NotFoundComponent,
     FaqComponent,
+    ServiceRepairComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule, MatExpansionModule, MatButtonModule],
   providers: [],
