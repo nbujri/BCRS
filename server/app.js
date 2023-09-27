@@ -16,7 +16,7 @@ const swaggerUI = require("swagger-ui-express");
 // route files
 const userRoute = require("../server/routes/user");
 const securityRoute = require("../server/routes/security");
-const invoiceRoute = require("../server/routes/invoice");
+const invoiceRoute = require("../server/routes/invoices");
 
 // Create the Express app
 const app = express();
