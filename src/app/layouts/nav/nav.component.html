@@ -62,7 +62,13 @@ Date: 9/13/23
         >
           <li>{{ sessionUser.fullName }}</li>
           <hr />
-          <li><a href=""></a></li>
+          <li>
+            <a
+              class="dropdown-item link"
+              routerLink="/{{ sessionUser.email }}/my-profile"
+              >My Profile</a
+            >
+          </li>
           <li>
             <a class="dropdown-item link" (click)="signout()">Sign Out</a>
           </li>
