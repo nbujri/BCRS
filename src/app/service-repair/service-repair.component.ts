@@ -91,8 +91,10 @@ export class ServiceRepairComponent {
       orderDate: "10/10/2020",
       lineItems: [
         {
+          id: 100,
           name: "Parts",
           price: 100,
+          checked: false
         }
       ]
     };
