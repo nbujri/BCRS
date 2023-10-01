@@ -21,7 +21,6 @@ import { FaqComponent } from './faq/faq.component';
 import { ServiceRepairComponent } from './service-repair/service-repair.component';
 import { InvoiceListComponent } from './invoice-list/invoice-list.component';
 import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
-
 import { PurchasesByServiceComponent } from './purchases-by-service/purchases-by-service.component';
 
 

@@ -56,16 +56,11 @@ const routes: Routes = [
         title: 'BCRS: FAQ'
       },
       {
-<<<<<<< HEAD
-        path: 'invoice-summary',
-        component: InvoiceSummaryComponent,
-        title: 'BCRS: Invoice Summary',
-      },
-      {
         path: 'purchases-by-service',
         component: PurchasesByServiceComponent,
         title: 'BCRS: Purchases By Service'
-=======
+      },
+      {
         path: 'service-repair',
         component: ServiceRepairComponent,
         title: 'BCRS: Service Repair'
@@ -79,7 +74,6 @@ const routes: Routes = [
         path: 'invoice-list',
         component: InvoiceListComponent,
         title: 'BCRS: Invoice List'
->>>>>>> mwalker-dev
       },
       {
         // path for admin module
