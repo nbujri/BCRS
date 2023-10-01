@@ -16,7 +16,7 @@ const swaggerUI = require("swagger-ui-express");
 // route files
 const userRoute = require("../server/routes/user");
 const securityRoute = require("../server/routes/security");
-const invoiceRoute = require("../server/routes/invoices");
+const invoicesRoute = require("../server/routes/invoices");
 
 // Create the Express app
 const app = express();
@@ -30,7 +30,7 @@ app.use("/", express.static(path.join(__dirname, "../dist/bcrs")));
 // api route
 app.use("/api/users", userRoute);
 app.use("/api/security", securityRoute);
-app.use("/api/invoices", invoiceRoute);
+app.use("/api/invoices", invoicesRoute);
 
 
 // swagger router

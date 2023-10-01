@@ -4,23 +4,34 @@ Date: 09-26-2023
 Description: Invoice Service
 Source: Professor Krasso, Angular.io */
 
-// imports for invoice service
+// imports
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { InvoiceModel } from './invoice.model';
 
-// export the invoice service
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-// export the invoice service
 export class InvoiceService {
-
-  // constructor for invoice service
   constructor(private http: HttpClient) { }
 
-  // find all invoices
-  createTheInvoice(invoice: InvoiceModel) {
-    return this.http.post('/api/invoices/', { invoice })
+  createInvoice(username: string, invoice: InvoiceModel) {
+    // Include the username in the URL if needed
+    const url = `/api/invoices/${username}`;
+    return this.http.post(url, { invoice });
+  }
+
+  getInvoices() {
+    return this.http.get('/api/invoices/');
+  }
+
+  // for our services graph
+  findPurchasesByServiceGraph() {
+    return this.http.get('/api/invoices/purchases-graph');
+  }
+
+  getInvoice(invoiceNumber: string) {
+    const url = `/api/invoices/${invoiceNumber}`;
+    return this.http.get(url);
   }
 }
