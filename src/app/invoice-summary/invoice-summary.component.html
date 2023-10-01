@@ -49,9 +49,11 @@ Source: Professor Krasso, Angular.io -->
               </div>
               <div class="col-6">
                 <b><u>Invoice Cost:</u></b> <br>
-                <p>Services Total: {{ invoice.lineItemTotal | currency }}</p>
-                <p>Other Parts Cost: {{ invoice.partsAmount | currency }}</p>
-                <p>Other Labor Cost: {{ invoice.laborAmount | currency }}</p>
+                <ul>
+                  <li>Services Total: {{ invoice.lineItemTotal | currency }}</li>
+                  <li>Other Parts Cost: {{ invoice.partsAmount | currency }}</li>
+                  <li>Other Labor Cost: {{ invoice.laborAmount | currency }}</li>
+                </ul>
               </div>
             </div>
           </section><br>
