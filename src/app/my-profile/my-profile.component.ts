@@ -45,13 +45,70 @@ export class MyProfileComponent {
         this.errorMessage = err.message;
       },
       complete: () => {
-        this.profileForm.controls['email'].setValue(this.userProfile.email);
-        this.profileForm.controls['firstName'].setValue(this.userProfile.email);
-        this.profileForm.controls['lastName'].setValue(this.userProfile.email);
-        this.profileForm.controls['phone'].setValue(this.userProfile.email);
-        this.profileForm.controls['address'].setValue(this.userProfile.email);
-        this.profileForm.controls['Role'].setValue(this.userProfile.email);
+        this.profileForm.controls['firstName'].setValue(
+          this.userProfile.firstName
+        );
+        this.profileForm.controls['lastName'].setValue(
+          this.userProfile.lastName
+        );
+        this.profileForm.controls['phoneNumber'].setValue(
+          this.userProfile.phoneNumber
+        );
+        this.profileForm.controls['address'].setValue(this.userProfile.address);
       },
     });
+  }
+
+  // save changes made to profile
+  save() {
+    // store form values
+    const user = {
+      firstName: this.profileForm.controls['firstName'].value,
+      lastName: this.profileForm.controls['lastName'].value,
+      phoneNumber: this.profileForm.controls['phoneNumber'].value,
+      address: this.profileForm.controls['address'].value,
+    };
+    console.log(user);
+
+    this.profileService.editProfile(this.userProfile.email, user).subscribe({
+      next: (res) => {
+        this.userProfile.firstName = user.firstName;
+        this.userProfile.lastName = user.lastName;
+        this.userProfile.phoneNumber = user.phoneNumber;
+        this.userProfile.address = user.address;
+        this.profileSaveSuccess = 'Profile Updated';
+      },
+      error: (err) => {
+        console.log(err);
+        this.profileSaveError = err.message;
+      },
+      complete: () => {
+        this.profileForm.reset();
+        this.profileForm.controls['firstName'].setValue(
+          this.userProfile.firstName
+        );
+        this.profileForm.controls['lastName'].setValue(
+          this.userProfile.lastName
+        );
+        this.profileForm.controls['phoneNumber'].setValue(
+          this.userProfile.phoneNumber
+        );
+        this.profileForm.controls['address'].setValue(this.userProfile.address);
+      },
+    });
+  }
+
+  // reset to original values
+  close() {
+    this.profileForm.reset();
+    this.profileForm.controls['firstName'].setValue(this.userProfile.firstName);
+    this.profileForm.controls['lastName'].setValue(this.userProfile.lastName);
+    this.profileForm.controls['phoneNumber'].setValue(
+      this.userProfile.phoneNumber
+    );
+    this.profileForm.controls['address'].setValue(this.userProfile.address);
+    this.profileSaveError = '';
+    this.profileSaveSuccess = '';
+    console.log(this.profileSaveSuccess);
   }
 }

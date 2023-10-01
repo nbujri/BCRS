@@ -6,6 +6,19 @@
 -->
 
 <div class="container-fluid p-5">
+  <div
+    *ngIf="profileSaveSuccess"
+    class="alert alert-success alert-dismissible fade show text-center fw-bold"
+    role="alert"
+  >
+    {{ profileSaveSuccess }}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
   <div class="row p-3 gap-3">
     <!-- profile left -->
     <div class="col-lg-5 card p-3">
@@ -37,9 +50,14 @@
           <div>
             <legend class="fw-bold">
               Personal Information
-              <a class="link-dark edit-button"
-                ><span class="material-icons">edit</span></a
+              <button
+                class="btn btn-info edit-button"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#editModal"
               >
+                <span class="material-icons">edit</span>
+              </button>
             </legend>
             <hr />
           </div>
@@ -105,5 +123,179 @@
         </div>
       </div>
     </div>
+
+    <!-- edit profile modal -->
+    <div
+      id="editModal"
+      class="modal fade"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="editModal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="form">
+        <div class="modal-content">
+          <!-- modal header -->
+          <div class="modal-header">
+            <h2 class="modal-title">Edit Profile</h2>
+            <button
+              type="button"
+              class="btn-close close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              (click)="close()"
+            ></button>
+          </div>
+
+          <!-- modal form -->
+          <div class="modal-body">
+            <form [formGroup]="profileForm">
+              <fieldset class="form-group">
+                <!-- error message -->
+                <div *ngIf="errorMessage" class="row">
+                  <div class="col-12">
+                    <div class="alert alert-danger">
+                      {{ errorMessage }}
+                    </div>
+                  </div>
+                </div>
+                <!-- end message -->
+
+                <!-- first name -->
+                <!-- first name error handling -->
+                <div
+                  *ngIf="
+                    profileForm.controls['firstName'].touched &&
+                    profileForm.controls['firstName'].hasError('required')
+                  "
+                >
+                  <div class="alert alert-danger" role="alert">
+                    First name is required.
+                  </div>
+                </div>
+                <!-- end first name error handling -->
+
+                <!-- first name input -->
+                <div class="mb-3">
+                  <label for="firstName" class="form-label">First Name:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    formControlName="firstName"
+                  />
+                </div>
+                <!-- end first name -->
+
+                <!-- last name -->
+                <!-- last name error handling -->
+                <div
+                  *ngIf="
+                    profileForm.controls['lastName'].touched &&
+                    profileForm.controls['lastName'].hasError('required')
+                  "
+                >
+                  <div class="alert alert-danger" role="alert">
+                    Last name is required.
+                  </div>
+                </div>
+                <!-- end last name error handling -->
+
+                <!-- last name input -->
+                <div class="mb-3">
+                  <label for="lastName" class="form-label">Last Name:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    formControlName="lastName"
+                  />
+                </div>
+                <!-- end last name -->
+
+                <!-- phone number -->
+                <!-- phone error handling-->
+                <div
+                  *ngIf="
+                    profileForm.controls['phoneNumber'].touched &&
+                    profileForm.controls['phoneNumber'].hasError('required')
+                  "
+                >
+                  <div class="alert alert-danger" role="alert">
+                    Phone number is required.
+                  </div>
+                </div>
+                <!-- end phone error handling -->
+
+                <!-- phone input -->
+                <div class="mb-3">
+                  <label for="phoneNumber" class="form-label">Phone:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="phoneNumber"
+                    formControlName="phoneNumber"
+                  />
+                </div>
+                <!-- end phone input -->
+                <!-- end phone -->
+
+                <!-- address -->
+                <!-- address error handling -->
+                <div
+                  *ngIf="
+                    profileForm.controls['address'].touched &&
+                    profileForm.controls['address'].hasError('required')
+                  "
+                >
+                  <div class="alert alert-danger" role="alert">
+                    Address is required.
+                  </div>
+                </div>
+                <!-- end address error handling -->
+
+                <!-- address input -->
+                <div class="mb-3">
+                  <label for="address" class="form-label">Address:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="address"
+                    formControlName="address"
+                  />
+                </div>
+                <!-- end address input -->
+                <!-- end address -->
+
+                <!-- buttons -->
+                <div class="row gx-3 mt-5 justify-content-around">
+                  <div class="col-5">
+                    <button
+                      class="btn btn-dark w-100 text-yellow"
+                      (click)="save()"
+                      [disabled]="!profileForm.valid"
+                      data-bs-dismiss="modal"
+                    >
+                      Update
+                    </button>
+                  </div>
+                  <div class="col-5">
+                    <button
+                      class="btn btn-dark w-100 text-yellow"
+                      data-bs-dismiss="modal"
+                      (click)="close()"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end modal -->
   </div>
 </div>

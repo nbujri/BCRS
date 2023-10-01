@@ -24,6 +24,6 @@ export class UserProfileService {
   }
 
   editProfile(email: string, user: ProfileUpdateModel) {
-    return this.http.put('/api/users/' + email + '/edit-profile', { user });
+    return this.http.put('/api/users/' + email + '/edit-profile', user);
   }
 }
