@@ -27,10 +27,18 @@ Source: Professor Krasso, Angular.io */
   background: var(--hp-yellow) !important;
   color: var(--hp-black) !important;
 }
-.table {
+ul {
+  list-style-type: none;
+  padding-left: 0 !important;
+}
+th {
   background: var(--hp-yellow) !important;
   color: var(--hp-black) !important;
 }
+.col-6 {
+  padding-left: 3em !important
+}
+
 html, body { height: 100%; }
 
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
