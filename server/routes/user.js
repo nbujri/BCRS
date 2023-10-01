@@ -148,8 +148,8 @@ const editProfileSchema = {
   properties: {
     firstName: { type: "string" },
     lastName: { type: "string" },
-    address: { type: "string" },
     phoneNumber: { type: "string" },
+    address: { type: "string" },
   },
   required: ["firstName", "lastName", "address", "phoneNumber"],
   additionalProperties: false,
