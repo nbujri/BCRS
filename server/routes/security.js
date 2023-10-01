@@ -115,6 +115,14 @@ router.post("/signin", (req, res, next) => {
         return;
       }
 
+      // update lastSignIn
+      const date = await db
+        .collection("users")
+        .findOneAndUpdate(
+          { email: signin.email },
+          { $set: { lastSignIn: new Date().toLocaleDateString() } }
+        );
+
       // compare the password entered to the password stored in the database
       let passwordIsValid = bcrypt.compareSync(signin.password, user.password);
 

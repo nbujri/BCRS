@@ -1,1 +1,109 @@
-<p>my-profile works!</p>
+<!--
+  title: my-profile.component.html
+  author: ngi bujri
+  date: september 26 2023
+  description: user profile page
+-->
+
+<div class="container-fluid p-5">
+  <div class="row p-3 gap-3">
+    <!-- profile left -->
+    <div class="col-lg-5 card p-3">
+      <!-- email -->
+      <div class="profile-header text-center mb-4">
+        <h2>{{ userProfile.email }}</h2>
+      </div>
+
+      <!-- profile avatar -->
+      <div class="profile-picture text-center">
+        <span
+          class="material-icons img-thumbnail rounded-circle mb-2"
+          style="font-size: 128px"
+        >
+          person
+        </span>
+        <h2>
+          {{ userProfile.firstName | titlecase }}
+          {{ userProfile.lastName | titlecase }}
+        </h2>
+      </div>
+    </div>
+
+    <!-- profile right -->
+    <div class="col card">
+      <div class="row justify-content-center p-3">
+        <!-- personal information -->
+        <div class="col-6">
+          <div>
+            <legend class="fw-bold">
+              Personal Information
+              <a class="link-dark edit-button"
+                ><span class="material-icons">edit</span></a
+              >
+            </legend>
+            <hr />
+          </div>
+          <div>
+            <h5>
+              First Name:
+              <span class="text-secondary fst-italic">{{
+                userProfile.firstName | titlecase
+              }}</span>
+            </h5>
+          </div>
+          <div>
+            <h5>
+              Last Name:
+              <span class="text-secondary fst-italic">{{
+                userProfile.lastName | titlecase
+              }}</span>
+            </h5>
+          </div>
+          <div>
+            <h5>
+              Phone #:
+              <span class="text-secondary fst-italic">{{
+                userProfile.phoneNumber
+              }}</span>
+            </h5>
+          </div>
+          <div>
+            <h5>
+              Address:
+              <span class="text-secondary fst-italic">{{
+                userProfile.address
+              }}</span>
+            </h5>
+          </div>
+        </div>
+
+        <!-- system settings -->
+        <div class="col-6">
+          <legend class="fw-bold">System Settings</legend>
+          <hr />
+          <div>
+            <h5>
+              Role:
+              <span class="text-secondary fst-italic">{{
+                userProfile.role
+              }}</span>
+            </h5>
+          </div>
+          <div>
+            <h5>
+              Language: <span class="text-secondary fst-italic">English</span>
+            </h5>
+          </div>
+          <div>
+            <h5>
+              Last Sign In:
+              <span class="text-secondary fst-italic">{{
+                userProfile.lastSignIn
+              }}</span>
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

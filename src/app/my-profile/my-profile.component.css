@@ -1,0 +1,15 @@
+/*
+  title: my-profile.component.css
+  author: ngi bujri
+  date: september 27 2023
+  description: profile page styles
+*/
+
+.edit-button {
+  margin-left: 1rem;
+}
+
+.edit-button:hover {
+  cursor: pointer;
+  color: green !important;
+}

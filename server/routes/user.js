@@ -137,16 +137,8 @@ const profileSchema = {
     email: { type: "string" },
     address: { type: "string" },
     phoneNumber: { type: "string" },
-    lastSignInDate: { type: "date" },
   },
-  required: [
-    "firstName",
-    "lastName",
-    "email",
-    "address",
-    "phoneNumber",
-    "lastSignInDate",
-  ],
+  required: ["firstName", "lastName", "email", "address", "phoneNumber"],
   additionalPropertiesL: false,
 };
 
@@ -392,7 +384,7 @@ router.get("/:email/security-questions", (req, res, next) => {
 router.get("/:email/my-profile", (req, res, next) => {
   try {
     // store email from cookie
-    const email = req.cookies.email;
+    const email = req.params.email;
     console.log(email);
 
     mongo(async (db) => {
@@ -400,13 +392,14 @@ router.get("/:email/my-profile", (req, res, next) => {
       const user = await db.collection("users").findOne(
         { email },
         {
-          $projection: {
+          projection: {
             email: 1,
             firstName: 1,
             lastName: 1,
             phoneNumber: 1,
             address: 1,
             role: 1,
+            lastSignIn: 1,
           },
         }
       );
@@ -420,7 +413,7 @@ router.get("/:email/my-profile", (req, res, next) => {
         return;
       }
 
-      res.status(200).send("OK");
+      res.status(200).send(user);
     }, next);
   } catch (err) {
     console.log("err", err);
@@ -432,15 +425,15 @@ router.get("/:email/my-profile", (req, res, next) => {
 router.put("/:email/edit-profile", (req, res, next) => {
   try {
     // get request body
-    const { user } = req.body;
+    const user = req.body;
     const email = req.params.email;
 
     // validate user
     const validator = ajv.compile(editProfileSchema);
-    const isValid = validator(user);
+    const valid = validator(user);
 
     // error for invalid schema
-    if (!isValid) {
+    if (!valid) {
       const err = new Error("Bad Request");
       err.status = 400;
       err.errors = validator.errors;
@@ -462,15 +455,6 @@ router.put("/:email/edit-profile", (req, res, next) => {
         }
       );
 
-      if (update.nModified !== 1) {
-        const err = new Error("Unable to update user profile");
-        err.status = 500;
-        console.log("err", err);
-        next(err);
-        return;
-      }
-
-      console.log("Updated User Info: ", update);
       res.status(204).send("No Content");
     }, next);
   } catch (err) {
