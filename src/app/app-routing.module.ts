@@ -14,8 +14,14 @@ import { authGuard } from './shared/auth.guard';
 import { roleGuard } from './shared/role.guard';
 import { EmployeeDirectoryComponent } from './employee-directory/employee-directory.component';
 import { FaqComponent } from './faq/faq.component';
+<<<<<<< HEAD
 import { PurchasesByServiceComponent } from './purchases-by-service/purchases-by-service.component';
 import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
+=======
+import { ServiceRepairComponent } from './service-repair/service-repair.component';
+import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
+import { InvoiceListComponent } from './invoice-list/invoice-list.component';
+>>>>>>> mwalker-dev
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -50,6 +56,7 @@ const routes: Routes = [
         title: 'BCRS: FAQ'
       },
       {
+<<<<<<< HEAD
         path: 'invoice-summary',
         component: InvoiceSummaryComponent,
         title: 'BCRS: Invoice Summary',
@@ -58,6 +65,21 @@ const routes: Routes = [
         path: 'purchases-by-service',
         component: PurchasesByServiceComponent,
         title: 'BCRS: Purchases By Service'
+=======
+        path: 'service-repair',
+        component: ServiceRepairComponent,
+        title: 'BCRS: Service Repair'
+      },
+      {
+        path: 'invoice-summary/:invoiceNumber',
+        component: InvoiceSummaryComponent,
+        title: 'BCRS: Invoice Summary'
+      },
+      {
+        path: 'invoice-list',
+        component: InvoiceListComponent,
+        title: 'BCRS: Invoice List'
+>>>>>>> mwalker-dev
       },
       {
         // path for admin module
