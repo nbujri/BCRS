@@ -56,7 +56,7 @@ Source: Professor Krasso, Angular.io -->
               <th>Invoice Total Cost</th>
             </tr>
           </thead>
-          <tbody *ngFor="let invoice of invoices">
+          <tbody class="hp-table-body" *ngFor="let invoice of invoices">
             <tr>
               <td>
                 <a routerLink="/invoice-summary/{{ invoice.invoiceNumber }}">

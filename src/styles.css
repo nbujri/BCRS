@@ -27,10 +27,11 @@ Source: Professor Krasso, Angular.io */
   background: var(--hp-yellow) !important;
   color: var(--hp-black) !important;
 }
-.table {
+th {
   background: var(--hp-yellow) !important;
   color: var(--hp-black) !important;
 }
+
 html, body { height: 100%; }
 
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
