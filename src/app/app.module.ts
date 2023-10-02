@@ -22,6 +22,7 @@ import { ServiceRepairComponent } from './service-repair/service-repair.componen
 import { InvoiceListComponent } from './invoice-list/invoice-list.component';
 import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
 import { PurchasesByServiceComponent } from './purchases-by-service/purchases-by-service.component';
+import { ServiceGraphComponent } from './service-graph/service-graph.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { PurchasesByServiceComponent } from './purchases-by-service/purchases-by
     InvoiceSummaryComponent,
     InvoiceSummaryComponent,
     PurchasesByServiceComponent,
+    ServiceGraphComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule, MatExpansionModule, MatButtonModule, ChartModule, FormsModule, ReactiveFormsModule, MatCardModule],
   providers: [CurrencyPipe],
