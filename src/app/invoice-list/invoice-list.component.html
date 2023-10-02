@@ -1,0 +1,87 @@
+<!-- Title: invoice-list.component
+Author: Megan Walker
+Date: 09-30-2023
+Description: Invoice List Component
+Source: Professor Krasso, Angular.io -->
+
+<div class="container-fluid pt-2" style="min-height: 600px; margin-top: 10%;">
+  <div class="row justify-content-center pt-4">
+    <h1 class="text-center">Service Repairs</h1><br><br>
+
+    <div class="col-12">
+      <a routerLink="/service-repair" class="text-dark text-underline-hover">
+        <button class="btn btn-new-invoice">Add A New Invoice</button>
+      </a>
+      <br /><br />
+
+      <div *ngIf="isLoading" class="d-flex justify-content-center mt-5">
+        <div class="spinner-border spinner-lg" style="width: 3rem; height: 3rem;" role="status" aria-hidden="true">
+          <span class="sr-only visually-hidden">Loading...</span>
+        </div>
+      </div>
+
+      <!-- Mobile and Tablet Viewports -->
+      <div class="table-responsive d-sm-block d-md-none d-lg-none d-xl-none">
+        <table *ngIf="!isLoading" class="text-center table table-bordered table-striped custom-table">
+          <thead>
+            <tr>
+              <th>Invoice Number</th>
+              <th>Invoice Date</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let invoice of invoices">
+            <tr>
+              <td>
+                <a routerLink="/invoice-list/{{ invoice.invoiceNumber }}/summary">
+                  <button class="btn">{{ invoice.invoiceNumber }}</button>
+                </a>
+              </td>
+              <td>{{ invoice.orderDate | date }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- end of mobile and tablet viewport -->
+
+      <!-- Desktop Viewports -->
+      <div class="d-none d-md-block">
+        <table *ngIf="!isLoading" class="text-center table table-bordered table-striped hp-table-head">
+          <thead class="hp-table-head">
+            <tr>
+              <th>Invoice Number</th>
+              <th>Invoice Date</th>
+              <th>Customer Email</th>
+              <th>Customer Name</th>
+              <th>Services Ordered</th>
+              <th>Labor Cost</th>
+              <th>Parts Cost</th>
+              <th>Invoice Total Cost</th>
+            </tr>
+          </thead>
+          <tbody class="hp-table-body" *ngFor="let invoice of invoices">
+            <tr>
+              <td>
+                <a routerLink="/invoice-summary/{{ invoice.invoiceNumber }}">
+                  <button class="btn">{{ invoice.invoiceNumber }}</button>
+                </a>
+              </td>
+              <td>{{ invoice.orderDate | date }}</td>
+              <td>{{ invoice.email }}</td>
+              <td>{{ invoice.fullName }}</td>
+              <td>
+                <ul>
+                  <li *ngFor="let item of invoice.lineItems">{{ item.name }}: {{ item.price | currency }}</li>
+                  <li *ngIf="invoice.lineItems.length === 0">None</li>
+                </ul>
+              </td>
+              <td>{{ invoice.laborAmount | currency }}</td>
+              <td>{{ invoice.partsAmount | currency }}</td>
+              <td>{{ invoice.invoiceTotal | currency }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- end of desktop viewport -->
+    </div>
+  </div>
+</div>
