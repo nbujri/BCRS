@@ -14,6 +14,7 @@ import { authGuard } from './shared/auth.guard';
 import { roleGuard } from './shared/role.guard';
 import { EmployeeDirectoryComponent } from './employee-directory/employee-directory.component';
 import { FaqComponent } from './faq/faq.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 import { ServiceRepairComponent } from './service-repair/service-repair.component';
 import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
 import { InvoiceListComponent } from './invoice-list/invoice-list.component';
@@ -41,35 +42,40 @@ const routes: Routes = [
         component: NotFoundComponent,
         title: 'BCRS: 404',
       },
-       {
+      {
         path: 'employee-directory',
         component: EmployeeDirectoryComponent,
-        title: 'BCRS: Employee Directory'
+        title: 'BCRS: Employee Directory',
       },
-       {
+      {
         path: 'faq',
         component: FaqComponent,
-        title: 'BCRS: FAQ'
+        title: 'BCRS: FAQ',
+      },
+      {
+        path: ':email/my-profile',
+        component: MyProfileComponent,
+        title: 'BCRS: My Profile',
       },
       {
         path: 'service-graph',
         component: ServiceGraphComponent,
-        title: 'BCRS: Purchases By Service'
+        title: 'BCRS: Purchases By Service',
       },
       {
         path: 'service-repair',
         component: ServiceRepairComponent,
-        title: 'BCRS: Service Repair'
+        title: 'BCRS: Service Repair',
       },
       {
         path: 'invoice-summary/:invoiceNumber',
         component: InvoiceSummaryComponent,
-        title: 'BCRS: Invoice Summary'
+        title: 'BCRS: Invoice Summary',
       },
       {
         path: 'invoice-list',
         component: InvoiceListComponent,
-        title: 'BCRS: Invoice List'
+        title: 'BCRS: Invoice List',
       },
       {
         // path for admin module
