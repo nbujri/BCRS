@@ -1,0 +1,11 @@
+.chart {
+    margin: 0 auto;
+    width: 55%;
+    height: 55%;
+    position: relative;
+}
+
+.chart-container {
+    text-align: center;
+    margin: 0 auto;
+}
