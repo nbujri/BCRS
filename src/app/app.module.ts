@@ -37,7 +37,6 @@ import { ServiceGraphComponent } from './service-graph/service-graph.component';
     InvoiceListComponent,
     InvoiceSummaryComponent,
     InvoiceSummaryComponent,
-    PurchasesByServiceComponent,
     ServiceGraphComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule, MatExpansionModule, MatButtonModule, ChartModule, FormsModule, ReactiveFormsModule, MatCardModule],
