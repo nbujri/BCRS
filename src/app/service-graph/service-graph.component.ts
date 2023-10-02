@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
+import { InvoiceService } from '../invoice.service';
 
 
 @Component({
