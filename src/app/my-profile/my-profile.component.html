@@ -21,7 +21,7 @@
   </div>
   <div class="row p-3 gap-3">
     <!-- profile left -->
-    <div class="col-lg-5 card p-3">
+    <div class="col-12 card p-3">
       <!-- email -->
       <div class="profile-header text-center mb-4">
         <h2>{{ userProfile.email }}</h2>
@@ -43,7 +43,7 @@
     </div>
 
     <!-- profile right -->
-    <div class="col card">
+    <div class="col-12 card">
       <div class="row justify-content-center p-3">
         <!-- personal information -->
         <div class="col-6">
@@ -64,7 +64,7 @@
           <div>
             <h5>
               First Name:
-              <span class="text-secondary fst-italic">{{
+              <span class="fst-italic">{{
                 userProfile.firstName | titlecase
               }}</span>
             </h5>
@@ -72,7 +72,7 @@
           <div>
             <h5>
               Last Name:
-              <span class="text-secondary fst-italic">{{
+              <span class="fst-italic">{{
                 userProfile.lastName | titlecase
               }}</span>
             </h5>
@@ -80,17 +80,13 @@
           <div>
             <h5>
               Phone #:
-              <span class="text-secondary fst-italic">{{
-                userProfile.phoneNumber
-              }}</span>
+              <span class="fst-italic">{{ userProfile.phoneNumber }}</span>
             </h5>
           </div>
           <div>
             <h5>
               Address:
-              <span class="text-secondary fst-italic">{{
-                userProfile.address
-              }}</span>
+              <span class="fst-italic">{{ userProfile.address }}</span>
             </h5>
           </div>
         </div>
@@ -102,22 +98,16 @@
           <div>
             <h5>
               Role:
-              <span class="text-secondary fst-italic">{{
-                userProfile.role
-              }}</span>
+              <span class="fst-italic">{{ userProfile.role }}</span>
             </h5>
           </div>
           <div>
-            <h5>
-              Language: <span class="text-secondary fst-italic">English</span>
-            </h5>
+            <h5>Language: <span class="fst-italic">English</span></h5>
           </div>
           <div>
             <h5>
               Last Sign In:
-              <span class="text-secondary fst-italic">{{
-                userProfile.lastSignIn
-              }}</span>
+              <span class="fst-italic">{{ userProfile.lastSignIn }}</span>
             </h5>
           </div>
         </div>

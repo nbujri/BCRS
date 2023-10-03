@@ -8,3 +8,13 @@
 .edit-button {
   margin-left: 3rem;
 }
+
+.card,
+.modal-content {
+  background-color: #740001;
+  color: #eeba30;
+}
+
+.modal {
+  backdrop-filter: blur(3px);
+}

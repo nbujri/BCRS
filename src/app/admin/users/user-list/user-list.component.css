@@ -5,10 +5,6 @@ Description: User list component
 
 Source: Professor Krasso, Angular.io */
 
-.bg {
-  background-color: #000;
-}
-
 .add-user-card {
   background-color: #740001;
   color: #eeba30;
@@ -16,4 +12,8 @@ Source: Professor Krasso, Angular.io */
 
 .btn-yellow-text {
   color: #eeba30;
+}
+
+.del-link:hover {
+  cursor: pointer;
 }

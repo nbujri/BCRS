@@ -5,7 +5,7 @@ Description: User list component
 Source: Professor Krasso, Angular.io -->
 
 <!-- component container -->
-<div class="container-fluid bg">
+<div class="container-fluid">
   <!-- page title -->
   <h1 class="text-center mt-3">User Configuration</h1>
 
@@ -65,7 +65,7 @@ Source: Professor Krasso, Angular.io -->
                   <a routerLink="/admin/users/{{ user.email }}/user-update">
                     <span class="material-icons text-secondary">edit</span>
                   </a>
-                  <a class="link" (click)="deleteUser(user.email)">
+                  <a class="del-link" (click)="deleteUser(user.email)">
                     <span class="material-icons text-secondary">delete</span>
                   </a>
                 </td>
