@@ -18,9 +18,35 @@ Source: Professor Krasso, Angular.io */
 
 .red-bg {
   background-color: var(--hp-red)!important;
-  border: 1px solid var(--hp-yellow-dk) !important;
 }
 
 .text-yellow {
   color: var(--hp-yellow) !important;
+}
+.btn-new-invoice {
+  background: var(--hp-yellow) !important;
+  color: var(--hp-black) !important;
+}
+ul {
+  list-style-type: none;
+  padding-left: 0 !important;
+}
+th {
+  background: var(--hp-yellow) !important;
+  color: var(--hp-black) !important;
+}
+.col-6 {
+  padding-left: 3em !important
+}
+
+html, body { height: 100%; }
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+mat-card {
+  margin: 0 auto; max-width: 900px !important;
+  border: 10px solid var(--hp-yellow-dk) !important;
+  color: var(--hp-yellow) !important;
+  padding: 1rem;
+  width: 100%;
 }
