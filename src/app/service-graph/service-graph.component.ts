@@ -1,3 +1,10 @@
+/**
+title: service-graph.component.ts
+author: caitlynne johnson
+date: 10/2/2023 
+*/
+
+
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
