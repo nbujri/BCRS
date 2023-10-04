@@ -6,7 +6,9 @@
 <div class="container py-4">
   <div class="p-5 mb-4 bg-light">
     <div class="container-fluid py-5">
-      <h1 class="display-5 fw-bold m-5">Welcome, {{ cookie.fullName }}!</h1>
+      <h1 class="display-5 fw-bold m-5 text-center">
+        Welcome, {{ cookie.fullName }}!
+      </h1>
       <div class="container">
         <div class="row text-center">
           <div class="col-md-6">
@@ -16,17 +18,8 @@
             <p></p>
             <p>
               Today is {{ myDate | date }}, make sure to check out the
-              <b>News</b> section for any updates and see if any
-              <i>Tickets</i> have been added to your account since the last time
-              you logged in.
+              <b>News</b> section for any updates.
             </p>
-            <button
-              type="button"
-              class="btn btn-link"
-              routerLink="/{{ cookie.email }}/my-profile"
-            >
-              View Profile
-            </button>
           </div>
         </div>
       </div>
@@ -131,11 +124,32 @@
       </div>
     </div>
 
-    <!-- start of tickets -->
+    <!-- start of quick links -->
     <div class="col-md-6">
       <div class="h-100 p-5 bg-light border">
-        <h1 class="display-5 fw-bold text-yellow text-center">Tickets</h1>
-        There are currently no tickets.
+        <h1 class="display-5 fw-bold text-yellow text-center pb-3">
+          Quick Links
+        </h1>
+        <ul class="row text-center">
+          <li class="col-6">
+            <a routerLink="/service-repair" class="link"
+              ><img
+                src="../../assets/calc.jpg"
+                alt="calculator"
+                class="img-fluid img-thumbnail img-link"
+              />Create Invoice</a
+            >
+          </li>
+          <li class="col-6">
+            <a routerLink="/{{ cookie.email }}/my-profile" class="link"
+              ><img
+                src="../../assets/user-icon.png"
+                alt="calculator"
+                class="img-fluid img-thumbnail img-link"
+              />Edit Profile</a
+            >
+          </li>
+        </ul>
       </div>
     </div>
   </div>

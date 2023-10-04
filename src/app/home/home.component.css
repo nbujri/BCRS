@@ -4,17 +4,18 @@ Date: 09-14-2023
 Description: Home component
 Source: Professor Krasso, Angular.io */
 
-
 .dark-bg {
-    background-color: #740001;
+  background-color: #740001;
 }
-
 
 .yellow-bg {
-    background-color: #eeba30;
+  background-color: #eeba30;
 }
 
-
 .text-yellow {
-    color: #eeba30;
-  }
+  color: #eeba30;
+}
+
+.img-link {
+  height: 200px;
+}
